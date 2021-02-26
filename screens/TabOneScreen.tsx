@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import CameraView from './CameraView';
-
 export default function TabOneScreen() {
   const [cameraOn, setCameraOn] = useState(false)
 
