@@ -25,7 +25,7 @@ const CONTENT = [
   },
   {
     title: 'A well-lit room',
-    content: 'Natural lighting significantly improve photo quality',
+    content: 'Natural lighting significantly improves photo quality',
   },
   {
     title: 'Solid background',
@@ -96,8 +96,8 @@ export default class App extends Component {
         style={[styles.content, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor"
       >
-        <Text  >
-          {section.content}
+        <Text style ={styles.content} >
+        {section.content}
         </Text>
       </View>
     );
@@ -132,36 +132,39 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-    paddingTop: 55,
+    backgroundColor: 'rgba(255,255,255,1)',
+    paddingTop: Constants.statusBarHeight,
   },
   title: {
     textAlign: 'left',
     fontSize: 22,
     fontWeight: '300',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   header: {
     backgroundColor: '#F5FCFF',
-    padding: 10,
+    padding: 5,
   },
   headerText: {
     fontFamily: 'Roboto-Bold',
     textAlign: 'left',
     fontSize: 18,
     fontWeight: '700',
-    padding: 15,
+    padding: 10,
+    color: 'rgba(104,107,126,1)',
+
   },
-  content: {
-color: '#9A9AB0',
-fontWeight: '500',
-padding:15,
+content: {
+color: 'rgba(154,154,176,1)',
+fontWeight: '700',
+fontSize: 16,
+padding:10,
   },
   active: {
     backgroundColor: 'rgba(255,255,255,1)',
   },
   inactive: {
-    backgroundColor: 'rgba(245,252,255,1)',
+    backgroundColor: 'rgba(255,255,255,1)',
   },
   selectors: {
     marginBottom: 10,
