@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { Camera } from "expo-camera";
+
+import AngleCarousel from "../components/Carousel";
 
 export default function CameraView() {
   const [hasPermission, setHasPermission] = useState(false);
@@ -22,6 +24,13 @@ export default function CameraView() {
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
+        <Image
+          style={styles.guide}
+          source={require("../assets/images/head-guide.png")}
+        />
+        <View style={styles.carouselContainer}>
+          <AngleCarousel />
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -31,7 +40,8 @@ export default function CameraView() {
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-            }}>
+            }}
+          >
             <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
         </View>
@@ -47,19 +57,34 @@ const styles = StyleSheet.create({
   camera: {
     flex: 1,
   },
-  buttonContainer: {
+  guide: {
+    flex: 1.8,
+    marginTop: '30%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 300,
+    width: 300,
+  },
+  carouselContainer: {
+    marginTop: '15%',
     flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
+    // backgroundColor: "rebeccapurple",
+    alignSelf: "center",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    flex: 0.2,
+    backgroundColor: "transparent",
+    flexDirection: "row",
     margin: 20,
   },
   button: {
     flex: 0.1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
+    alignSelf: "flex-end",
+    alignItems: "center",
   },
   text: {
     fontSize: 18,
-    color: 'white',
+    color: "white",
   },
 });
