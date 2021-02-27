@@ -158,7 +158,7 @@ content: {
 color: 'rgba(154,154,176,1)',
 fontWeight: '700',
 fontSize: 16,
-padding:10,
+padding:20,
   },
   active: {
     backgroundColor: 'rgba(255,255,255,1)',
