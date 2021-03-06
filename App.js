@@ -1,0 +1,80 @@
+// This import is necessary for any file containing a React component
+import React from "react";
+
+// These imports are part of our navigation package, React Navigation
+// https://reactnavigation.org/docs/getting-started
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+// Our project has two screens: HomeScreen and GameScreen
+// Thus, we import both of these screens
+import HomeScreen from "./screens/HomeScreen";
+import ChecklistScreen from "./screens/ChecklistScreen";
+import IntroductionScreen from "./screens/IntroductionScreen";
+import ViewpointsScreen from "./screens/ViewpointsScreen";
+import SolidBackgroundScreen from "./screens/SolidBackgroundScreen";
+import SubmissionScreen from "./screens/SubmissionScreen";
+import CameraView from "./screens/CameraView";
+import GalleryView from "./screens/GalleryView";
+import { Asset } from "expo-asset";
+
+// To initialize and style our Navigation Stack, we call the default methods
+// https://reactnavigation.org/docs/hello-react-navigation
+const Stack = createStackNavigator();
+const StackOptions = { headerTitleStyle: { fontFamily: "Avenir" } };
+
+// Loading all images for quick use (eliminates lag problem)
+// https://docs.expo.io/versions/latest/sdk/asset/
+// Asset.loadAsync(require("./assets/name.png"));
+
+// This is the default entry point of our application
+// This function returns JSX: a tree-like structure of React components
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          options={StackOptions}
+          name="Akron Children's Hospital"
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Checklist"
+          component={ChecklistScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Introduction"
+          component={IntroductionScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Viewpoints"
+          component={ViewpointsScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Solid Background"
+          component={SolidBackgroundScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Camera"
+          component={CameraView}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Gallery"
+          component={GalleryView}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Submission"
+          component={SubmissionScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
