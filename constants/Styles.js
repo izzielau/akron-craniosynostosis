@@ -68,18 +68,16 @@ const styles = StyleSheet.create({
       height: "50%",
       width: "100%"
   },
-  tutorialImage: {
+  viewpointView: {
+      height: "60%",
+      width: "100%"
+  },
+  image: {
     flex: 1,
     width: "100%",
     height: null,
     marginBottom: 15,
     resizeMode: "cover",
-  },
-  image: {
-    justifyContent: "center",
-    height: 500,
-    width: "100%",
-    resizeMode: "contain",
   },
   buttonText: {
     fontFamily: "Avenir",
@@ -95,7 +93,7 @@ const styles = StyleSheet.create({
     color: "#9A9AB0",
     alignItems: "center",
   },
-  tutorialHeaderText: {
+  headerText: {
     fontFamily: "Avenir",
     fontWeight: "600",
     fontSize: 18,
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginBottom: 15,
   },
-  tutorialBodyText: {
+  bodyText: {
     fontFamily: "Avenir",
     fontWeight: "600",
     fontSize: 14,
@@ -113,7 +111,16 @@ const styles = StyleSheet.create({
     width: "90%",
     marginBottom: 15,
   },
-  tutorialBodyTextBold: {
+  bodyTextSmallMargin: {
+    fontFamily: "Avenir",
+    fontWeight: "600",
+    fontSize: 14,
+    color: "#9A9AB0",
+    alignItems: "center",
+    width: "90%",
+    marginBottom: 5,
+  },
+  bodyTextBold: {
     fontFamily: "Avenir",
     fontWeight: "900",
     fontSize: 14,

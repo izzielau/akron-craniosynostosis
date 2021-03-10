@@ -13,15 +13,15 @@ export default function IntroductionScreen(props) {
     <View style={styles.tutorialContainer}>
         <View style={styles.imageView}>
             <Image
-                style={styles.tutorialImage}
+                style={styles.image}
                 source={require('../assets/tutorial/filler.jpg')}
             />
         </View>
         <View style={styles.tutorialTextContainer}>
-            <Text style={styles.tutorialHeaderText}>
+            <Text style={styles.headerText}>
                 Let’s walk through some best practices for taking pictures.
             </Text>
-            <Text style={styles.tutorialBodyText}>
+            <Text style={styles.bodyText}>
                 We’ll provide an overview of the angles we’ll ask you to capture and what an ideal photography environment looks like.
                 Once you’re all set up, we’ll evaluate your at-home photography studio.
             </Text>

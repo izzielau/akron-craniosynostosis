@@ -11,17 +11,17 @@ export default function IntroductionScreen(props) {
   // Style & return the view.
   return (
     <View style={styles.tutorialContainer}>
-        <View style={styles.imageView}>
+        <View style={styles.viewpointView}>
             <Image
-                style={styles.tutorialImage}
+                style={styles.image}
                 source={require('../assets/tutorial/filler.jpg')}
             />
         </View>
         <View style={styles.tutorialTextContainer}>
-            <Text style={styles.tutorialHeaderText}>
+            <Text style={styles.headerText}>
                 We’ll need to capture 9 viewpoints of your child’s head.
             </Text>
-            <Text style={styles.tutorialBodyText}>
+            <Text style={styles.bodyText}>
                 Swipe through for examples of all the angles. Don’t worry, we’ll
                 also provide these examples and guidance when you take the pictures.
             </Text>

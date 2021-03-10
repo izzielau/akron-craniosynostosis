@@ -13,15 +13,15 @@ export default function SolidBackgroundScreen(props) {
     <View style={styles.tutorialContainer}>
       <View style={styles.imageView}>
           <Image
-              style={styles.tutorialImage}
+              style={styles.image}
               source={require('../assets/tutorial/filler.jpg')}
           />
       </View>
       <View style={styles.tutorialTextContainer}>
-          <Text style={styles.tutorialHeaderText}>
+          <Text style={styles.headerText}>
               A solid background significantly improves the quality of photos.
           </Text>
-          <Text style={styles.tutorialBodyText}>
+          <Text style={styles.bodyText}>
               We recommend finding a wall with a solid color for your photography
               environnment. Unable to find an empty wall? That’s okay! You can also
               use bedsheets to create a space with a solid background.
