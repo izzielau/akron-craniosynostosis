@@ -12,7 +12,7 @@ export default function SolidBackgroundScreen(props) {
   return (
     <View>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.longButton}
           onPress={() => navigation.navigate("Camera")}
         >
           <Text style={styles.buttonText}>Start Photographing</Text>

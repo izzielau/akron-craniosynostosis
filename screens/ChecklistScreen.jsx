@@ -10,12 +10,12 @@ export default function ChecklistScreen(props) {
 
   // Style & return the view.
   return (
-    <View>
+    <View style={styles.container}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Introduction")}
         >
-          <Text style={styles.buttonText}>I'm Ready!</Text>
+          <Text style={styles.buttonText}>I'm ready!</Text>
         </TouchableOpacity>
     </View>
   );

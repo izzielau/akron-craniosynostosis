@@ -10,19 +10,36 @@ export default function IntroductionScreen(props) {
 
   // Style & return the view.
   return (
-    <View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Camera")}
-        >
-          <Text style={styles.buttonText}>Skip Tutorial</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Viewpoints")}
-        >
-          <Text style={styles.buttonText}>Continue</Text>
-        </TouchableOpacity>
+    <View style={styles.tutorialContainer}>
+        <View style={styles.imageView}>
+            <Image
+                style={styles.tutorialImage}
+                source={require('../assets/tutorial/filler.jpg')}
+            />
+        </View>
+        <View style={styles.tutorialTextContainer}>
+            <Text style={styles.tutorialHeaderText}>
+                Let’s walk through some best practices for taking pictures.
+            </Text>
+            <Text style={styles.tutorialBodyText}>
+                We’ll provide an overview of the angles we’ll ask you to capture and what an ideal photography environment looks like.
+                Once you’re all set up, we’ll evaluate your at-home photography studio.
+            </Text>
+        </View>
+        <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.whiteButton}
+              onPress={() => navigation.navigate("Camera")}
+            >
+              <Text style={styles.whiteButtonText}>Skip Tutorial</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Viewpoints")}
+            >
+              <Text style={styles.buttonText}>Continue</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   );
 }
