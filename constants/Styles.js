@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     marginBottom: 50
   },
+  singleButtonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: "5%",
+    marginBottom: 50
+  },
   button: {
     height: 35,
     width: 125,
@@ -105,6 +111,16 @@ const styles = StyleSheet.create({
     color: "#9A9AB0",
     alignItems: "center",
     width: "90%",
+    marginBottom: 15,
+  },
+  tutorialBodyTextBold: {
+    fontFamily: "Avenir",
+    fontWeight: "900",
+    fontSize: 14,
+    color: "#9A9AB0",
+    alignItems: "center",
+    width: "90%",
+    marginBottom: 15,
   },
 });
 
