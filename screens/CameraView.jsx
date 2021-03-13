@@ -1,21 +1,103 @@
-import React, { useState } from "react";
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import React, { useState,  useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { Camera } from "expo-camera";
 
-import { styles } from "../constants/Styles";
-import { useEffect } from "react";
+import AngleCarousel from "../components/Carousel";
+
+// import { styles } from "../constants/Styles";
 import { shuffle } from "../utils/ArrayUtils";
 
 export default function CameraView(props) {
   const { navigation } = props;
 
+  const [hasPermission, setHasPermission] = useState(false);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
   // Style & return the view.
   return (
-    <View>
-        <TouchableOpacity
+    <View style={styles.container}>
+      <Camera style={styles.camera} type={type}>
+        <Image
+          style={styles.guide}
+          source={require("../assets/head-guide.png")}
+        />
+        <View style={styles.carouselContainer}>
+          <AngleCarousel />
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity>
+            <Image style={styles.button} source={require("../assets/camera-capture.png")} />
+          </TouchableOpacity>
+          <TouchableOpacity
           style={styles.gallery}
           onPress={() => navigation.navigate("Gallery")}
         >
         </TouchableOpacity>
+        </View>
+      </Camera>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  camera: {
+    flex: 1,
+  },
+  guide: {
+    flex: 1.8,
+    marginTop: '30%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 300,
+    width: 300,
+  },
+  carouselContainer: {
+    marginTop: '15%',
+    flex: 1,
+    alignSelf: "center",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    flex: 0.5,
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    margin: 20,
+  },
+  button: {
+    flex: 1,
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
+
+/* code for flipping camera
+<TouchableOpacity
+  style={styles.button}
+  onPress={() => {
+    setType(
+    type === Camera.Constants.Type.back
+      ? Camera.Constants.Type.front
+      : Camera.Constants.Type.back
+    );
+  }}
+>
+<Text style={styles.text}> Flip </Text>
+*/
