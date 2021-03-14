@@ -6,6 +6,7 @@ import AngleCarousel from "../components/Carousel";
 
 // import { styles } from "../constants/Styles";
 import { shuffle } from "../utils/ArrayUtils";
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CameraView(props) {
   const { navigation } = props;
@@ -35,17 +36,18 @@ export default function CameraView(props) {
           style={styles.guide}
           source={require("../assets/head-guide.png")}
         />
+        <Text style={styles.instructions}>Tap on the example angle to expand and see more.</Text>
         <View style={styles.carouselContainer}>
           <AngleCarousel />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity>
-            <Image style={styles.button} source={require("../assets/camera-capture.png")} />
+          <TouchableOpacity style={styles.button}>
+            <Image source={require("../assets/camera-capture.png")} />
           </TouchableOpacity>
           <TouchableOpacity
-          style={styles.gallery}
-          onPress={() => navigation.navigate("Gallery")}
-        >
+            style={styles.gallery}
+            onPress={() => navigation.navigate("Gallery")}
+          >
         </TouchableOpacity>
         </View>
       </Camera>
@@ -61,15 +63,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   guide: {
-    flex: 1.8,
+    flex: 2,
     marginTop: '30%',
     alignSelf: 'center',
     justifyContent: 'center',
     height: 300,
     width: 300,
   },
+  instructions: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: '7%'
+  },
   carouselContainer: {
-    marginTop: '15%',
+    marginTop: '7%',
     flex: 1,
     alignSelf: "center",
     alignItems: "center",
@@ -77,11 +84,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 0.5,
     backgroundColor: "transparent",
-    flexDirection: "row",
     margin: 20,
   },
   button: {
-    flex: 1,
+    flex: 0.5,
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center"
