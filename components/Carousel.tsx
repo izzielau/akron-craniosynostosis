@@ -66,6 +66,7 @@ export default class AngleCarousel extends React.Component {
             width: "100%",
             height: "100%",
             position: "relative",
+            borderRadius: 5,
           }}
         />
         <Text
