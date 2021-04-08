@@ -1,6 +1,7 @@
 import React, { useState,  useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
+import * as MediaLibrary from 'expo-media-library';
 
 import AngleCarousel from "../components/Carousel";
 
@@ -29,6 +30,66 @@ export default function CameraView(props) {
     return <Text>No access to camera</Text>;
   }
 
+  state = {
+    rollGranted: false,
+    cameraGranted: false,
+  };
+
+  function componentDidMount() {
+    this.getCameraPermissions();
+  };
+
+  async function getCameraPermissions() {
+    const { Permissions } = Expo;
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    if (status === 'granted') {
+      this.setState({ cameraGranted: true });
+    } else {
+      this.setState({ cameraGranted: false });
+      console.log('Uh oh! The user has not granted us permission.');
+    }
+    this.getCameraRollPermissions();
+  };
+
+  async function getCameraRollPermissions() {
+    const { Permissions } = Expo;
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status === 'granted') {
+    } else {
+      /// Handle permissions denied;
+      console.log('Uh oh! The user has not granted us permission.');
+    }
+  };
+
+  takePictureAndCreateAlbum = async () => {
+    const { uri } = await Camera.takePictureAsync();
+    console.log('uri', uri);
+    const asset = await MediaLibrary.createAssetAsync(uri);
+    MediaLibrary.createAlbumAsync('Expo', asset)
+      .then(() => {
+        console.log('Album created!');
+      })
+      .catch(error => {
+        console.log('err', error);
+      });
+  }
+
+  async function takePicture() {
+    const photo = async () => {
+      try {
+          const options = { quality: 0.5, base64: true };
+          const data = await Camera.takePictureAsync(options);
+          
+          console.log(data.uri, '<<<<<<<<<<<<<<<<<<<<<');
+      } catch (error) {
+          console.log(error, "ERROR <<<<<<<<<<<<<")
+      }
+    };
+
+    console.log(photo)
+    console.log("hello")
+  }
+
   // Style & return the view.
   // camera button woo
   return (
@@ -42,7 +103,15 @@ export default function CameraView(props) {
           <AngleCarousel />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity 
+          style={styles.button}
+          // onPress={() => takePicture()}
+          onPress={() =>
+            this.state.rollGranted && this.state.cameraGranted
+              ? this.takePictureAndCreateAlbum()
+              : console.log('Permissions not granted')
+          }
+          >
             <Image source={require("../assets/camera-capture.png")} />
           </TouchableOpacity>
           <TouchableOpacity
