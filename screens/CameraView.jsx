@@ -30,6 +30,7 @@ export default function CameraView(props) {
   }
 
   // Style & return the view.
+  // camera button woo
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
