@@ -12,6 +12,12 @@ import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import { useFonts } from 'expo-font';
 
+import { styles } from "../constants/Styles";
+import { useEffect } from "react";
+import { shuffle } from "../utils/ArrayUtils";
+
+ export default function ChecklistScreen(props) {
+  const { navigation } = props;
 const CONTENT = [
   {
     title: '20-30 minutes',
@@ -58,7 +64,7 @@ const SELECTORS = [
   },
 ];
 
-export default class App extends Component {
+ class App extends Component {
   state = {
     activeSections: [],
     collapsed: true,
@@ -103,7 +109,7 @@ export default class App extends Component {
 
   render() {
     const { multipleSelect, activeSections } = this.state;
-
+    
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
@@ -119,11 +125,17 @@ export default class App extends Component {
             onChange={this.setSections}
           />
         </ScrollView>
+        <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Introduction")}
+        >
+        <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
       </View>
     );
   }
+  };
 };
-
 
 
 const styles = StyleSheet.create({
@@ -192,3 +204,4 @@ padding:20,
     marginRight: 8,
   },
 });
+export{App};
