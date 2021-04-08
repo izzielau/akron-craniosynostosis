@@ -7,6 +7,7 @@ import AngleCarousel from "../components/Carousel";
 // import { styles } from "../constants/Styles";
 import { shuffle } from "../utils/ArrayUtils";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
+import { white } from "ansi-colors";
 
 export default function CameraView(props) {
   const { navigation } = props;
@@ -36,7 +37,6 @@ export default function CameraView(props) {
           style={styles.guide}
           source={require("../assets/head-guide.png")}
         />
-        <Text style={styles.instructions}>Tap on the example angle to expand and see more.</Text>
         <View style={styles.carouselContainer}>
           <AngleCarousel />
         </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   carouselContainer: {
     marginTop: '7%',
-    flex: 1,
+    height: 125,
     alignSelf: "center",
     alignItems: "center",
   },
@@ -91,6 +91,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center"
+  },
+  gallery: {
+    height: 50,
+    width: 50,
+    borderRadius: 5,
+    backgroundColor: "white",
   }
 });
 

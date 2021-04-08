@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, View, SafeAreaView, Image, StyleSheet } from "react-native";
 
 import Carousel from "react-native-snap-carousel";
+import { Dimensions } from 'react-native';
 
 export default class AngleCarousel extends React.Component {
   constructor(props) {
@@ -55,9 +56,7 @@ export default class AngleCarousel extends React.Component {
         style={{
           backgroundColor: "rebeccapurple",
           borderRadius: 5,
-          height: 150,
-          marginLeft: 15,
-          marginRight: 15,
+          height: 100,
         }}
       >
         <Image
@@ -93,8 +92,8 @@ export default class AngleCarousel extends React.Component {
             ref={(ref) => (this.carousel = ref)}
             data={this.state.carouselItems}
             loop={true}
-            sliderWidth={430} // needs to be relative to screen size in the future
-            itemWidth={200}
+            sliderWidth={Dimensions.get('window').width} // needs to be relative to screen size in the future
+            itemWidth={100}
             hasParallaxImages={true}
             renderItem={this._renderItem}
             onSnapToItem={(index) => this.setState({ activeIndex: index })}
