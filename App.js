@@ -18,6 +18,7 @@ import SubmissionScreen from "./screens/SubmissionScreen";
 import CameraView from "./screens/CameraView";
 import GalleryView from "./screens/GalleryView";
 import { Asset } from "expo-asset";
+import { StatusBar } from 'react-native';
 
 // To initialize and style our Navigation Stack, we call the default methods
 // https://reactnavigation.org/docs/hello-react-navigation
@@ -75,6 +76,7 @@ export default function App() {
           component={SubmissionScreen}
         />
       </Stack.Navigator>
+      <StatusBar barStyle={'dark-content'}/>
     </NavigationContainer>
   );
 }
