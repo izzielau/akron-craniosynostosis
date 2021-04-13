@@ -7,14 +7,15 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
 
 const CONTENT = [
   {
-    title: <Text>20-30 minutes</Text>,
-    content: <Text>This whole process should take up to 30 minutes total. Keep in mind that an early time investment now will help later on.</Text>,
+    title: '20-30 minutes',
+    content: 'This whole process should take up to 30 minutes total. Keep in mind that an early time investment now will help later on.',
   },
   {
     title: 'Yourself and an assistant',
@@ -22,7 +23,7 @@ const CONTENT = [
   },
   {
     title: 'A well-lit room',
-    content: 'Natural lighting significantly improves photo quality',
+    content: 'Natural lighting significantly improves photo quality.',
   },
   {
     title: 'Solid background',
@@ -30,7 +31,7 @@ const CONTENT = [
   },
   {
     title: 'Towel or blanket',
-    content: 'Wrapping the baby in a blanket can help with some top-down views ',
+    content: 'Wrapping the baby in a blanket can help with some top-down views.',
   },
 
   {
@@ -44,7 +45,8 @@ const CONTENT = [
 ];
 
 
-const ChecklistScreen = () => {
+const ChecklistScreen = (props) => {
+  const { navigation } = props;
   const [activeSections, setActiveSections] = useState([]);
 
   const setSections = (sections) => {
@@ -55,7 +57,7 @@ const ChecklistScreen = () => {
 
   const renderHeader = (section, _, isActive) => {
     return (
-      <Animatable.View
+      <View
         duration={400}
         style={[
           styles.header,
@@ -63,27 +65,31 @@ const ChecklistScreen = () => {
         ]}
         transition="backgroundColor">
         <Text style={styles.headerText}>
+        <Icon
+          name='plus'
+          type='ant'
+          color='black'
+        />
           {section.title}
         </Text>
-      </Animatable.View>
+      </View>
     );
   };
 
   const renderContent = (section, _, isActive) => {
     return (
-      <Animatable.View
+      <View
         duration={400}
         style={[
           styles.content,
           isActive ? styles.active : styles.inactive
         ]}
         transition="backgroundColor">
-        <Animatable.Text
-          animation={isActive ? 'bounceIn' : undefined}
-          style={{textAlign: 'center'}}>
+        <Text
+          style={styles.content}>
           {section.content}
-        </Animatable.Text>
-      </Animatable.View>
+        </Text>
+      </View>
     );
   };
 
@@ -103,6 +109,14 @@ const ChecklistScreen = () => {
             onChange={setSections}
           />
         </ScrollView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("Introduction")}
+          >
+            <Text style={styles.buttonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
       </View>
   );
 };
@@ -112,33 +126,38 @@ export default ChecklistScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
     paddingTop: 30,
   },
+  buttonContainer: {
+    alignItems: 'center',
+    marginBottom: '10%',
+  },
   title: {
+    fontFamily: 'Avenir',
     textAlign: 'center',
     fontSize: 18,
-    fontWeight: '300',
+    fontWeight: '500',
     marginBottom: 20,
   },
   header: {
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
     padding: 10,
   },
   headerText: {
-    textAlign: 'center',
+    fontFamily: 'Avenir',
+    textAlign: 'left',
     fontSize: 16,
     fontWeight: '500',
+    marginLeft: 25,
   },
   content: {
-    padding: 20,
-    backgroundColor: '#fff',
-  },
-  active: {
-    backgroundColor: 'rgba(255,255,255,1)',
-  },
-  inactive: {
-    backgroundColor: 'rgba(245,252,255,1)',
+    width: '90%',
+    height: '100%',
+    fontFamily: 'Avenir',
+    textAlign: 'left',
+    marginLeft: 20,
+    marginRight: 20,
   },
   selectors: {
     marginBottom: 10,
@@ -167,5 +186,20 @@ const styles = StyleSheet.create({
   multipleToggle__title: {
     fontSize: 16,
     marginRight: 8,
+  },
+  button: {
+    height: 35,
+    width: 125,
+    borderRadius: 500,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#014590",
+  },
+  buttonText: {
+    fontFamily: "Avenir",
+    fontWeight: "600",
+    fontSize: 14,
+    color: "white",
+    alignItems: "center",
   },
 });
