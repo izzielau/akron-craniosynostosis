@@ -15,28 +15,28 @@ import Accordion from 'react-native-collapsible/Accordion';
 const CONTENT = [
   {
     title: '20-30 minutes',
-    content: 'This whole process should take up to 30 minutes total. Keep in mind that an early time investment now will help later on.',
+    content: 'This whole process should take up to 30 minutes total.',
   },
   {
     title: 'Yourself and an assistant',
-    content: 'It takes two people to successfully take all the pictures for this application, so make sure you have someone to help you. ',
+    content: 'Taking good photos of your infant is a 2-person job. To be successful, one person should hold the baby while the other takes pictures. ',
   },
   {
     title: 'A well-lit room',
-    content: 'Natural lighting significantly improves photo quality.',
+    content: 'Natural lighting significantly improve photo quality, but a good indoor lighting is also fine.',
   },
   {
     title: 'Solid background',
-    content: 'A solid background is helpful to provide that makes the image clear enough for proper evaluation. Finding a blank wall or hanging up a bedsheet might work in some cases.',
+    content: 'A solid background is helpful to provide that makes the image clear enough for proper evaluation. Finding a blank wall or hanging up a bedsheet might work in some cases. \n\nMake sure there aren’t any lights or windows in the background that could ruin the shot.',
   },
   {
     title: 'Towel or blanket',
-    content: 'Wrapping the baby in a blanket can help with some top-down views.',
+    content: 'Wrapping the baby, like when using a haircut cape, in a solid colored blanket may help with some top-down views',
   },
 
   {
     title: 'Water',
-    content: 'If baby has a lot of hair, wetting it will make their skull shape easier to see.',
+    content: 'If baby has a lot of hair, wetting it or taking pictures after a bath will make their skull shape easier to see.',
   },
   {
     title: 'Patience',
@@ -57,20 +57,20 @@ const ChecklistScreen = (props) => {
 
   const renderHeader = (section, _, isActive) => {
     return (
-      <View
+      <View 
         duration={400}
         style={[
           styles.header,
           isActive ? styles.active : styles.inactive
         ]}
         transition="backgroundColor">
-        <Text style={styles.headerText}>
-        <Icon
+           <Icon style={styles.icons}
           name='plus'
           type='ant'
           color='black'
         />
-          {section.title}
+        <Text style={styles.headerText}>
+        {section.title}
         </Text>
       </View>
     );
@@ -114,7 +114,7 @@ const ChecklistScreen = (props) => {
             style={styles.button}
             onPress={() => navigation.navigate("Introduction")}
           >
-            <Text style={styles.buttonText}>Next</Text>
+            <Text style={styles.buttonText}>I'm Ready</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -124,6 +124,7 @@ const ChecklistScreen = (props) => {
 export default ChecklistScreen;
 
 const styles = StyleSheet.create({
+  
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -135,29 +136,40 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Avenir',
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: '500',
+    textAlign: 'left',
+    fontSize: 32,
+    fontWeight: '700',
+    marginLeft: 20,
     marginBottom: 20,
   },
   header: {
     backgroundColor: 'white',
     padding: 10,
+    flexDirection: 'row',
+    flex: 1
   },
   headerText: {
     fontFamily: 'Avenir',
     textAlign: 'left',
-    fontSize: 16,
-    fontWeight: '500',
-    marginLeft: 25,
+    fontSize: 23,
+    fontWeight: '700',
+    marginLeft: 10,
+    
+  },
+  icons: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    fontSize: 15
   },
   content: {
     width: '90%',
     height: '100%',
     fontFamily: 'Avenir',
     textAlign: 'left',
-    marginLeft: 20,
+    marginLeft: 25,
     marginRight: 20,
+    fontSize: 16
   },
   selectors: {
     marginBottom: 10,
