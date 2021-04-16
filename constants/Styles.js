@@ -68,9 +68,20 @@ const styles = StyleSheet.create({
       height: "50%",
       width: "100%"
   },
+  logoView: {
+    height: "15%",
+    width: "40%",
+  },
   viewpointView: {
       height: "60%",
       width: "100%"
+  },
+  logoImage: {
+    flex: 1,
+    width: "100%",
+    height: null,
+    marginBottom: 10,
+    resizeMode: "contain",
   },
   image: {
     flex: 1,

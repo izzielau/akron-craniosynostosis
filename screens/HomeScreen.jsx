@@ -14,8 +14,14 @@ export default function HomeScreen(props) {
         <Text style={styles.bodyTextSmallMargin}>
             Welcome to
         </Text>
+        <View style={styles.logoView}>
+            <Image
+                style={styles.logoImage}
+                source={require('../assets/akron_logo.png')}
+            />
+        </View>
         <Text style={styles.headerText}>
-            Akron Children’s Hospital: Craniosynostosis App
+            Craniosynostosis App
         </Text>
         <Text style={styles.bodyText}>
             Think of this app as a way to "find a needle in a haystack."
