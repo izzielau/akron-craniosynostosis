@@ -11,13 +11,13 @@ export default function GalleryView(props) {
   const numColumns = 2;
   
   const [angles] = useState([
-    {title: 'Angle 1', key: '1'},
-    {title: 'Angle 2', key: '2'},
-    {title: 'Angle 3', key: '3'},
-    {title: 'Angle 4', key: '4'},
-    {title: 'Angle 5', key: '5'},
-    {title: 'Angle 6', key: '6'},
-    {title: 'Angle 7', key: '7'},
+    {title: 'Front', key: '1'},
+    {title: 'Back', key: '2'},
+    {title: 'Left Side', key: '3'},
+    {title: 'Right Side', key: '4'},
+    {title: "Worm's Eye", key: '5'},
+    {title: 'Top', key: '6'},
+    {title: 'Top Angled', key: '7'},
     {title: 'Angle 8', key: '8'},
   ]);
 
