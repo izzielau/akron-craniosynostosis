@@ -17,6 +17,7 @@ import SolidBackgroundScreen from "./screens/SolidBackgroundScreen";
 import SubmissionScreen from "./screens/SubmissionScreen";
 import CameraView from "./screens/CameraView";
 import GalleryView from "./screens/GalleryView";
+import FolderView from "./screens/FolderView";
 import { Asset } from "expo-asset";
 import { StatusBar } from 'react-native';
 
@@ -69,6 +70,11 @@ export default function App() {
           options={StackOptions}
           name="Gallery"
           component={GalleryView}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Folder"
+          component={FolderView}
         />
         <Stack.Screen
           options={StackOptions}

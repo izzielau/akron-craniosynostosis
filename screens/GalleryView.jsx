@@ -21,17 +21,15 @@ export default function GalleryView(props) {
     {title: 'Angle 8', key: '8'},
   ]);
 
-  const Item = ({ title }) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity 
       style={styles.galleryFolder}
-      onPress={() => navigation.navigate("Submission")}
+      onPress={() => navigation.navigate("Folder", {
+        title: item.title
+      })}
     >
-      <Text style={styles.bodyText}>{title}</Text>
+      <Text style={styles.bodyText}>{item.title}</Text>
     </TouchableOpacity>
-  );
-
-  const renderItem = ({ item }) => (
-    <Item title={item.title} />
   )
 
   const numCompleted = 44;
