@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -56,13 +56,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#F0F0F7",
   },
   gallery: {
-    alignItems: "flex-end",
-    marginTop: "80%",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    width: 50,
-    height: 50,
-    backgroundColor: "#0085FF",
+    alignItems: "flex-start",
+    flexWrap: "wrap"
+  },
+  galleryFolder: {
+    // flex: 1,
+    height: Dimensions.get('window').height / 7,
+    width: Dimensions.get('window').width / 2.5,
+    borderRadius: 25,
+    margin: 15,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#F0F0F7",
   },
   imageView: {
       height: "50%",
