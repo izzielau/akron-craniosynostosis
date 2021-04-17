@@ -14,8 +14,17 @@ export default function FolderView(props) {
 
     return (
         <View style={[styles.container, {justifyContent: 'flex-start'}]}>
+            <Text style={[styles.bodyText, {marginTop: 10, marginBottom: 10}]}>
+                {"Compare to example."}
+            </Text>
+            <View style={[styles.galleryFolder, {height: 200, width: 300}]}>
+                <Text style={styles.bodyText}>Your Image</Text>
+            </View>
+            <View style={[styles.galleryFolder, {height: 200, width: 300}]}>
+                <Text style={styles.bodyText}>Example Image</Text>
+            </View>
             <TouchableOpacity
-                style={[styles.button, {marginBottom: 13}]}
+                style={[styles.button, {marginTop: 10}]}
                 onPress={() => navigation.navigate("TBD")}
             >
                 <Text style={styles.buttonText}>Capture More</Text>
