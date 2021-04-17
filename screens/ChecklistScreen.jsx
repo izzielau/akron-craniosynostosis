@@ -5,6 +5,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Content,
+  Button,
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -56,6 +58,7 @@ const ChecklistScreen = (props) => {
   };
 
   const renderHeader = (section, _, isActive) => {
+    
     return (
       <View 
         duration={400}
@@ -64,8 +67,9 @@ const ChecklistScreen = (props) => {
           isActive ? styles.active : styles.inactive
         ]}
         transition="backgroundColor">
-           <Icon style={styles.icons}
-          name='plus'
+       
+          <Icon style={styles.icons}
+          name={isActive ? 'minus' : 'plus'}
           type='ant'
           color='black'
         />
