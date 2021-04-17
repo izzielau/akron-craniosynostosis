@@ -25,6 +25,7 @@ import { StatusBar } from 'react-native';
 // https://reactnavigation.org/docs/hello-react-navigation
 const Stack = createStackNavigator();
 const StackOptions = { headerTitleStyle: { fontFamily: "Avenir" } };
+const NoHeader = { headerTitleStyle: { fontFamily: "Avenir" }, headerShown: false };
 
 // Loading all images for quick use (eliminates lag problem)
 // https://docs.expo.io/versions/latest/sdk/asset/
@@ -37,7 +38,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Akron Children's Hospital"
           component={HomeScreen}
         />
