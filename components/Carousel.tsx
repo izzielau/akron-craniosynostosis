@@ -98,6 +98,16 @@ export default class AngleCarousel extends React.Component<{}, { modalVisible: b
                 borderRadius: 5,
               }}
             />
+            <Text
+              style={{
+                position: "absolute",
+                marginTop: 10,
+                marginLeft: 10,
+                fontSize: 30
+              }}
+            >
+              {this.state.carouselItems[this.state.activeIndex].text}
+            </Text>
             <Button title="Close" onPress={this.toggleModal} color="white" />
           </View>
         </Modal>
