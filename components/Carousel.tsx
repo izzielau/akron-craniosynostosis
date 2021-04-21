@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Text, View, SafeAreaView, Image, StyleSheet } from "react-native";
+import { Text, View, SafeAreaView, Image,TouchableOpacity, Button } from "react-native";
 
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from 'react-native';
+import Modal from 'react-native-modal';
 
-export default class AngleCarousel extends React.Component {
+export default class AngleCarousel extends React.Component<{}, { modalVisible: boolean, activeIndex: number, carouselItems: object}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,36 +48,59 @@ export default class AngleCarousel extends React.Component {
           text: "Top (angled)",
         },
       ],
+      modalVisible: false
     };
   }
 
-  _renderItem({ item, index }) {
+  toggleModal = () => { 
+    this.setState({modalVisible: !this.state.modalVisible});
+  }
+
+  _renderItem = ({ item, index }) => {
     return (
-      <View
-        style={{
-          backgroundColor: "rebeccapurple",
-          borderRadius: 5,
-          height: 100,
-        }}
-      >
-        <Image
-          source={item.image}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            borderRadius: 5,
-          }}
-        />
-        <Text
-          style={{
-            position: "absolute",
-            marginTop: 5,
-            marginLeft: 5,
-          }}
-        >
-          {item.text}
-        </Text>
+      <View>
+        <TouchableOpacity onPress={this.toggleModal}>
+          <View
+            style={{
+              backgroundColor: "rebeccapurple",
+              borderRadius: 5,
+              height: 100,
+            }}
+          >
+            <Image
+              source={item.image}
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "relative",
+                borderRadius: 5,
+              }}
+            />
+            <Text
+              style={{
+                position: "absolute",
+                marginTop: 5,
+                marginLeft: 5,
+              }}
+            >
+              {item.text}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <Modal isVisible={this.state.modalVisible}>
+          <View>
+            <Image
+              source={this.state.carouselItems[this.state.activeIndex].image}
+              style={{
+                width: "100%",
+                height: "75%",
+                position: "relative",
+                borderRadius: 5,
+              }}
+            />
+            <Button title="Close" onPress={this.toggleModal} color="white" />
+          </View>
+        </Modal>
       </View>
     );
   }
