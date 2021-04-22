@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Text, View, SafeAreaView, Image,TouchableOpacity, Button} from "react-native";
+import { Text, View, SafeAreaView, Image,TouchableOpacity, Button, ImageRequireSource} from "react-native";
 
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 
 type carouselItem = {
-  image: Image;
+  image: ImageRequireSource;
   text: string;
 }
 
