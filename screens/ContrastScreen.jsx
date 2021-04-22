@@ -5,39 +5,38 @@ import { styles } from "../constants/Styles";
 import { useEffect } from "react";
 import { shuffle } from "../utils/ArrayUtils";
 
-export default function IntroductionScreen(props) {
+export default function ContrastScreen(props) {
   const { navigation } = props;
 
   // Style & return the view.
   return (
     <View style={styles.tutorialContainer}>
-        <View style={styles.viewpointView}>
+        <View style={styles.imageView}>
             <Image
                 style={styles.image}
-                source={require('../assets/tutorial/image-2.png')}
+                source={require('../assets/tutorial/image-4.png')}
             />
         </View>
         <View style={styles.tutorialTextContainer}>
             <Text style={styles.headerText}>
-                We’ll need to capture 9 viewpoints of your child’s head.
+            Let’s make sure you have proper contrast between your background and your infant 
             </Text>
             <Text style={styles.bodyText}>
-                Swipe through for examples of all the angles. Don’t worry, we’ll
-                also provide these examples and guidance when you take the pictures.
+            Snap a couple pictures of your infant in front of the background that you’ve chosen. We’ll let you know if your current setup provides enough contrast. 
             </Text>
         </View>
         <View style={styles.buttonRow}>
             <TouchableOpacity
               style={styles.whiteButton}
-              onPress={() => navigation.navigate("Introduction")}
+              onPress={() => navigation.navigate("Solid Background")}
             >
               <Text style={styles.whiteButtonText}>Previous</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("Solid Background")}
+              onPress={() => navigation.navigate("Camera")}
             >
-              <Text style={styles.buttonText}>Continue</Text>
+              <Text style={styles.buttonText}>Evaluate Studio</Text>
             </TouchableOpacity>
         </View>
     </View>
