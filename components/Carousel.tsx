@@ -1,11 +1,16 @@
 import * as React from "react";
-import { Text, View, SafeAreaView, Image,TouchableOpacity, Button } from "react-native";
+import { Text, View, SafeAreaView, Image,TouchableOpacity, Button} from "react-native";
 
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 
-export default class AngleCarousel extends React.Component<{}, { modalVisible: boolean, activeIndex: number, carouselItems: object}> {
+type carouselItem = {
+  image: Image;
+  text: string;
+}
+
+export default class AngleCarousel extends React.Component<{}, { modalVisible: boolean, activeIndex: number, carouselItems: carouselItem[]}> {
   constructor(props) {
     super(props);
     this.state = {
