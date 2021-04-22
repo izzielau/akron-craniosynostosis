@@ -128,7 +128,7 @@ export default class AngleCarousel extends React.Component<{}, { modalVisible: b
         >
           <Carousel
             layout={"default"}
-            ref={(ref) => (this.carousel = ref)}
+            // ref={(ref) => (this.carousel = ref)}
             data={this.state.carouselItems}
             loop={true}
             sliderWidth={Dimensions.get('window').width} // needs to be relative to screen size in the future
