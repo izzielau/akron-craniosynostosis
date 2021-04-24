@@ -135,6 +135,12 @@ const styles = StyleSheet.create({
     width: "90%",
     marginBottom: 15,
   },
+  carouselContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 50
+  },
 });
 
 export { styles };

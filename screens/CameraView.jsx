@@ -7,7 +7,7 @@ import AngleCarousel from "../components/Carousel";
 // import { styles } from "../constants/Styles";
 import { shuffle } from "../utils/ArrayUtils";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
-import { white } from "ansi-colors";
+//import { white } from "ansicolors";
 
 export default function CameraView(props) {
   const { navigation } = props;

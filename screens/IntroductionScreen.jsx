@@ -4,6 +4,8 @@ import { Image, Text, View, TouchableOpacity } from "react-native";
 import { styles } from "../constants/Styles";
 import { useEffect } from "react";
 import { shuffle } from "../utils/ArrayUtils";
+import { SafeAreaView, StyleSheet } from 'react-native'
+import CarouselCards from '../components/CarouselCards.tsx'
 
 export default function IntroductionScreen(props) {
   const { navigation } = props;
@@ -12,10 +14,14 @@ export default function IntroductionScreen(props) {
   return (
     <View style={styles.tutorialContainer}>
         <View style={styles.imageView}>
-            <Image
+            <SafeAreaView style={styles.carouselContainer}>
+            {/* <SafeAreaView>  */}
+              <CarouselCards />
+            </SafeAreaView>
+            {/* <Image
                 style={styles.image}
                 source={require('../assets/tutorial/filler.jpg')}
-            />
+            /> */}
         </View>
         <View style={styles.tutorialTextContainer}>
             <Text style={styles.headerText}>
