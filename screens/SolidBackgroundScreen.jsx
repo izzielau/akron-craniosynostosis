@@ -14,7 +14,7 @@ export default function SolidBackgroundScreen(props) {
       <View style={styles.imageView}>
           <Image
               style={styles.image}
-              source={require('../assets/tutorial/filler.jpg')}
+              source={require('../assets/tutorial/image-3.png')}
           />
       </View>
       <View style={styles.tutorialTextContainer}>
@@ -27,14 +27,22 @@ export default function SolidBackgroundScreen(props) {
               use bedsheets to create a space with a solid background.
           </Text>
       </View>
-      <View style={styles.singleButtonRow}>
-          <TouchableOpacity
-            style={styles.longButton}
-            onPress={() => navigation.navigate("Camera")}
-          >
-            <Text style={styles.buttonText}>Start Photographing</Text>
-          </TouchableOpacity>
-      </View>
+      
+      
+      <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.whiteButton}
+              onPress={() => navigation.navigate("Viewpoints")}
+            >
+              <Text style={styles.whiteButtonText}>Previous</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Contrast")}
+            >
+              <Text style={styles.buttonText}>Continue</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   );
 }

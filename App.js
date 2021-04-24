@@ -14,6 +14,7 @@ import ChecklistScreen from "./screens/ChecklistScreen";
 import IntroductionScreen from "./screens/IntroductionScreen";
 import ViewpointsScreen from "./screens/ViewpointsScreen";
 import SolidBackgroundScreen from "./screens/SolidBackgroundScreen";
+import ContrastScreen from "./screens/ContrastScreen";
 import SubmissionScreen from "./screens/SubmissionScreen";
 import CameraView from "./screens/CameraView";
 import GalleryView from "./screens/GalleryView";
@@ -61,6 +62,11 @@ export default function App() {
           options={StackOptions}
           name="Solid Background"
           component={SolidBackgroundScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Contrast"
+          component={ContrastScreen}
         />
         <Stack.Screen
           options={StackOptions}
