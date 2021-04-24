@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     borderRadius: 500,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "transparent",
   },
   gallery: {
     alignItems: "flex-start",
