@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from "react-native"
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../constants/CarouselCardItem'
-import data from '../constants/data'
+import photo_data from '../constants/photo_data'
 
 const CarouselCards = () => {
   const [index, setIndex] = React.useState(0)
@@ -14,16 +14,16 @@ const CarouselCards = () => {
         layout="tinder"
         layoutCardOffset={9}
         ref={isCarousel}
-        data={data}
+        data={photo_data}
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
+        onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
       />
 
       <Pagination
-        dotsLength={data.length}
+        dotsLength={photo_data.length}
         activeDotIndex={index}
         carouselRef={isCarousel}
         dotStyle={{
