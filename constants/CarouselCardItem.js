@@ -8,7 +8,7 @@ const CarouselCardItem = ({ item, index }) => {
   return (
     <View style={styles.container} key={index}>
       <Image
-        source={{ uri: item.imgUrl }}
+        source={item.imgUrl }
         style={styles.image}
       />
       <Text style={styles.header}>{item.title}</Text>

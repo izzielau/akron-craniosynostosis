@@ -20,6 +20,7 @@ const CarouselCards = () => {
         itemWidth={ITEM_WIDTH}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
+        slideStyle={{ flex: 1 }}
       />
 
       <Pagination
