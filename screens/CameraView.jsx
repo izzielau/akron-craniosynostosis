@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from 'expo-media-library';
@@ -14,14 +14,22 @@ export default function CameraView(props) {
   const { navigation } = props;
 
   const [hasPermission, setHasPermission] = useState(false);
+  const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === 'granted');
+      console.log("setting hasPermission to ", status === 'granted')
+
+      const rollPermissions = await MediaLibrary.requestPermissionsAsync();
+      setHasCameraRollPermission(rollPermissions.status === 'granted');
+      console.log("setting camera roll permission to ", rollPermissions.status === 'granted')
     })();
   }, []);
+
+  const camera = useRef();
 
   if (hasPermission === null) {
     return <View />;
@@ -62,16 +70,22 @@ export default function CameraView(props) {
   };
 
   takePictureAndCreateAlbum = async () => {
-    const { uri } = await Camera.takePictureAsync();
-    console.log('uri', uri);
-    const asset = await MediaLibrary.createAssetAsync(uri);
-    MediaLibrary.createAlbumAsync('Expo', asset)
-      .then(() => {
-        console.log('Album created!');
-      })
-      .catch(error => {
-        console.log('err', error);
-      });
+    if (camera.current) {
+      console.log("before")
+      const data = await camera.current.takePictureAsync()
+        .catch(error => console.log('error', error));
+      console.log(data);
+      
+      const asset = await MediaLibrary.createAssetAsync(data.uri);
+      // TODO: name this album based on what angle we're taking a picture for (replace Expo)
+      MediaLibrary.createAlbumAsync('Expo', asset)
+        .then(() => {
+          console.log('Album created!');
+        })
+        .catch(error => {
+          console.log('err', error);
+        });
+    }
   }
 
   async function takePicture() {
@@ -94,7 +108,7 @@ export default function CameraView(props) {
   // camera button woo
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type} ref={camera}>
         <Image
           style={styles.guide}
           source={require("../assets/head-guide.png")}
@@ -107,9 +121,9 @@ export default function CameraView(props) {
           style={styles.button}
           // onPress={() => takePicture()}
           onPress={() =>
-            this.state.rollGranted && this.state.cameraGranted
-              ? this.takePictureAndCreateAlbum()
-              : console.log('Permissions not granted')
+            hasPermission & hasCameraRollPermission
+              ? takePictureAndCreateAlbum()
+              : console.log('Permissions not granted', hasPermission, hasCameraRollPermission)
           }
           >
             <Image source={require("../assets/camera-capture.png")} />
