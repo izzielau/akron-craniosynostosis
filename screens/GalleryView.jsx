@@ -52,10 +52,11 @@ export default function GalleryView(props) {
         keyExtractor={item => item.key}
         numColumns={numColumns}
         scrollEnabled={false}
+        style={{marginTop: Dimensions.get('window').height / 100}}
       />
 
       <TouchableOpacity
-        style={[styles.button, {marginBottom: 13}]}
+        style={[styles.button, {margin: Dimensions.get('window').height / 80}]}
         onPress={() => navigation.navigate("Submission")}
       >
         <Text style={styles.buttonText}>I'm Done</Text>
