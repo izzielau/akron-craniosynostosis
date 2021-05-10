@@ -10,8 +10,8 @@ export default function FolderView(props) {
 
     const { title } = route.params;
 
-    const imageWidth = 325;
-    const imageHeight = 250;
+    const imageWidth = Dimensions.get('window').width * 0.9;
+    const imageHeight = Dimensions.get('window').height;
 
     useEffect(() => {
         navigation.setOptions({headerTitle: title});
@@ -54,8 +54,8 @@ export default function FolderView(props) {
                 sliderWidth={imageWidth}
                 sliderHeight={imageHeight}
                 itemWidth={imageWidth}
-                layout={'stack'}
-                layoutCardOffset={294}
+                layout={'default'}
+                layoutCardOffset={0}
             />
             <Text style={[styles.bodyText, folderStyles.sectionText]}>Example Image</Text>
             <View style={[styles.galleryFolder, folderStyles.image]}></View>
@@ -79,19 +79,19 @@ const folderStyles = StyleSheet.create({
         marginBottom: 10
     },
     image: {
-        height: 250, 
-        width: 325, 
+        height: Dimensions.get('window').height / 3.75,
+        width: Dimensions.get('window').width * 0.9, 
         margin: 0, 
         padding: 0, 
         alignItems: 'center', 
         justifyContent: 'center'
     },
     carousel: {
-        height: Dimensions.get('window').height / 7,
-        width: Dimensions.get('window').width / 2.5,
+        height: Dimensions.get('window').height / 3.75,
+        width: Dimensions.get('window').width * 0.9,
         borderRadius: 25,
-        margin: 15,
-        padding: 10,
+        margin: 0,
+        padding: 0,
         alignItems: "center",
         justifyContent: "flex-start",
         backgroundColor: "#F0F0F7",
