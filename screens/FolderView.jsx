@@ -17,6 +17,7 @@ export default function FolderView(props) {
         navigation.setOptions({headerTitle: title});
     });
 
+    //camera roll permissions should already be requested prior to access to folder page, thus should not need to maintain state of camera roll permissions and can be removed in future.
     const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
 
     useEffect(() => {
