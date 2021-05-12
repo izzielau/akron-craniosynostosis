@@ -38,7 +38,7 @@ export default function FolderView(props) {
 
     const renderItem = ({ item }) => (
         <Image 
-            style={[folderStyles.carousel, folderStyles.image]} 
+            style={folderStyles.image} 
             source={item} />
     )
     
@@ -79,21 +79,12 @@ const folderStyles = StyleSheet.create({
         marginBottom: 10
     },
     image: {
-        height: Dimensions.get('window').height / 3.75,
+        height: Dimensions.get('window').height * 0.28,
         width: Dimensions.get('window').width * 0.9, 
         margin: 0, 
         padding: 0, 
+        borderRadius: 25,
         alignItems: 'center', 
         justifyContent: 'center'
     },
-    carousel: {
-        height: Dimensions.get('window').height / 3.75,
-        width: Dimensions.get('window').width * 0.9,
-        borderRadius: 25,
-        margin: 0,
-        padding: 0,
-        alignItems: "center",
-        justifyContent: "flex-start",
-        backgroundColor: "#F0F0F7",
-      },
 })
