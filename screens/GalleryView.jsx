@@ -4,6 +4,7 @@ import { Image, Text, View, TouchableOpacity, FlatList, Dimensions } from "react
 import { styles } from "../constants/Styles";
 import { useEffect } from "react";
 import { shuffle } from "../utils/ArrayUtils";
+import * as MediaLibrary from 'expo-media-library';
 
 export default function GalleryView(props) {
   const { navigation } = props;
@@ -11,27 +12,41 @@ export default function GalleryView(props) {
   const numColumns = 2;
   
   const [angles] = useState([
-    {title: 'Front', key: '1'},
-    {title: 'Back', key: '2'},
-    {title: 'Left Side', key: '3'},
-    {title: 'Right Side', key: '4'},
-    {title: "Worm's Eye", key: '5'},
-    {title: 'Top', key: '6'},
-    {title: 'Top Angled', key: '7'},
-    {title: 'Angle 8', key: '8'},
+    {title: 'Front', key: '1', image: null},
+    {title: 'Back', key: '2', image: null},
+    {title: 'Left Side', key: '3', image: null},
+    {title: 'Right Side', key: '4', image: null},
+    {title: "Worm's Eye", key: '5', image: null},
+    {title: 'Top', key: '6', image: null},
+    {title: 'Top Angled', key: '7', image: null},
+    // {title: 'Angle 8', key: '8', image: ''},
   ]);
+
+  useEffect(() => {
+    angles.forEach((item) => {
+      (async () => {
+        const album = await MediaLibrary.getAlbumAsync(item.title);
+        const res = await MediaLibrary.getAssetsAsync({ album });
+        item.image = res.assets;
+      })();
+    })});
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
-      style={styles.galleryFolder}
       onPress={() => navigation.navigate("Folder", {
         title: item.title
       })}
     >
-      <Text style={styles.bodyText}>{item.title}</Text>
+      <Image
+        style={styles.galleryFolder} 
+        source={ item.image } 
+      />
+      <View style={[styles.button, {position: 'absolute', top: Dimensions.get('window').height / 40, left: 35, backgroundColor: '#014590', width: Dimensions.get('window').width / 3.5, height: Dimensions.get('window').height / 25}]}>
+        <Text style={styles.buttonText}>{item.title}</Text>
+      </View>
     </TouchableOpacity>
   )
-
+  
   const numCompleted = 44;
   const status = "Complete";
 
