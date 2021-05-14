@@ -16,6 +16,38 @@ export default function CameraView(props) {
   const [hasPermission, setHasPermission] = useState(false);
   const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const carouselItems = [
+    {
+      image: require("../assets/faces/front.png"),
+      text: "Front",
+    },
+    {
+      image: require("../assets/faces/back.png"),
+      text: "Back",
+    },
+    {
+      image: require("../assets/faces/left-side.png"),
+      text: "Left Side",
+    },
+    {
+      image: require("../assets/faces/right-side.png"),
+      text: "Right Side",
+    },
+    {
+      image: require("../assets/faces/under.png"),
+      text: "Under",
+    },
+    {
+      image: require("../assets/faces/top-angled.png"),
+      text: "Top",
+    },
+    {
+      image: require("../assets/faces/birdeye.png"),
+      text: "Bird's eye view",
+    },
+  ]
 
   useEffect(() => {
     (async () => {
@@ -38,47 +70,18 @@ export default function CameraView(props) {
     return <Text>No access to camera</Text>;
   }
 
-  state = {
-    rollGranted: false,
-    cameraGranted: false,
-  };
-
-  function componentDidMount() {
-    this.getCameraPermissions();
-  };
-
-  async function getCameraPermissions() {
-    const { Permissions } = Expo;
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    if (status === 'granted') {
-      this.setState({ cameraGranted: true });
-    } else {
-      this.setState({ cameraGranted: false });
-      console.log('Uh oh! The user has not granted us permission.');
-    }
-    this.getCameraRollPermissions();
-  };
-
-  async function getCameraRollPermissions() {
-    const { Permissions } = Expo;
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status === 'granted') {
-    } else {
-      /// Handle permissions denied;
-      console.log('Uh oh! The user has not granted us permission.');
-    }
-  };
-
-  takePictureAndCreateAlbum = async () => {
+  const takePictureAndCreateAlbum = async () => {
     if (camera.current) {
-      console.log("before")
       const data = await camera.current.takePictureAsync()
         .catch(error => console.log('error', error));
       console.log(data);
       
       const asset = await MediaLibrary.createAssetAsync(data.uri);
       // TODO: name this album based on what angle we're taking a picture for (replace Expo)
-      MediaLibrary.createAlbumAsync('Expo', asset)
+      const albumTitle = carouselItems[activeIndex].text;
+      console.log(albumTitle);
+
+      MediaLibrary.createAlbumAsync(albumTitle, asset)
         .then(() => {
           console.log('Album created!');
         })
@@ -88,24 +91,6 @@ export default function CameraView(props) {
     }
   }
 
-  async function takePicture() {
-    const photo = async () => {
-      try {
-          const options = { quality: 0.5, base64: true };
-          const data = await Camera.takePictureAsync(options);
-          
-          console.log(data.uri, '<<<<<<<<<<<<<<<<<<<<<');
-      } catch (error) {
-          console.log(error, "ERROR <<<<<<<<<<<<<")
-      }
-    };
-
-    console.log(photo)
-    console.log("hello")
-  }
-
-  // Style & return the view.
-  // camera button woo
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={camera}>
@@ -114,14 +99,17 @@ export default function CameraView(props) {
           source={require("../assets/head-guide.png")}
         />
         <View style={styles.carouselContainer}>
-          <AngleCarousel />
+          <AngleCarousel
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            carouselItems={carouselItems}
+          />
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
           style={styles.button}
-          // onPress={() => takePicture()}
           onPress={() =>
-            hasPermission & hasCameraRollPermission
+            hasPermission && hasCameraRollPermission
               ? takePictureAndCreateAlbum()
               : console.log('Permissions not granted', hasPermission, hasCameraRollPermission)
           }

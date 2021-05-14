@@ -1,56 +1,16 @@
-import * as React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Text, View, SafeAreaView, Image, StyleSheet } from "react-native";
 
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from 'react-native';
 
-export default class AngleCarousel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeIndex: 0,
-      carouselItems: [
-        {
-          image: require("../assets/faces/left-side.png"),
-          text: "Side (left)",
-        },
-        {
-          image: require("../assets/faces/left-off-center.png"),
-          text: "Face (left off-center)",
-        },
-        {
-          image: require("../assets/faces/front.png"),
-          text: "Face (front)",
-        },
-        {
-          image: require("../assets/faces/right-off-center.png"),
-          text: "Face (right off-center)",
-        },
-        {
-          image: require("../assets/faces/right-side.png"),
-          text: "Side (right)",
-        },
-        {
-          image: require("../assets/faces/back.png"),
-          text: "Back",
-        },
-        {
-          image: require("../assets/faces/under.png"),
-          text: "Under",
-        },
-        {
-          image: require("../assets/faces/birdeye.png"),
-          text: "Bird's eye view",
-        },
-        {
-          image: require("../assets/faces/top-angled.png"),
-          text: "Top (angled)",
-        },
-      ],
-    };
-  }
+// Todo: find type for image and replace any
+type CarouselItem = { image: any, text: string }
+type CarouselProps = { activeIndex: number, setActiveIndex: Function, carouselItems: CarouselItem[] }
 
-  _renderItem({ item, index }) {
+export default function AngleCarousel(props: CarouselProps) {
+
+  const renderItem = ({ item, index }) => {
     return (
       <View
         style={{
@@ -81,27 +41,24 @@ export default class AngleCarousel extends React.Component {
     );
   }
 
-  render() {
-    return (
+  return (
       <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}
         >
           <Carousel
             layout={"default"}
-            ref={(ref) => (this.carousel = ref)}
-            data={this.state.carouselItems}
+            data={props.carouselItems}
             loop={true}
             sliderWidth={Dimensions.get('window').width} // needs to be relative to screen size in the future
             itemWidth={100}
             hasParallaxImages={true}
-            renderItem={this._renderItem}
-            onSnapToItem={(index) => this.setState({ activeIndex: index })}
+            renderItem={renderItem}
+            onSnapToItem={(index) => props.setActiveIndex(index)}
           />
         </View>
       </SafeAreaView>
-    );
-  }
+  )
 }
 
 /*
