@@ -5,11 +5,6 @@ import * as MediaLibrary from 'expo-media-library';
 
 import AngleCarousel from "../components/Carousel";
 
-// import { styles } from "../constants/Styles";
-import { shuffle } from "../utils/ArrayUtils";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
-import { white } from "ansi-colors";
-
 export default function CameraView(props) {
   const { navigation } = props;
 
@@ -77,7 +72,6 @@ export default function CameraView(props) {
       console.log(data);
       
       const asset = await MediaLibrary.createAssetAsync(data.uri);
-      // TODO: name this album based on what angle we're taking a picture for (replace Expo)
       const albumTitle = carouselItems[activeIndex].text;
       console.log(albumTitle);
 
