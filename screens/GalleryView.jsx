@@ -41,8 +41,8 @@ export default function GalleryView(props) {
         style={styles.galleryFolder} 
         source={ item.image } 
       />
-      <View style={[styles.button, {position: 'absolute', top: Dimensions.get('window').height / 40, left: 35, backgroundColor: '#014590', width: Dimensions.get('window').width / 3.5, height: Dimensions.get('window').height / 25}]}>
-        <Text style={styles.buttonText}>{item.title}</Text>
+      <View style={[styles.button, {position: 'absolute', top: Dimensions.get('window').height / 40, left: 35, backgroundColor: 'rgba(240, 240, 247, 0.75)', width: Dimensions.get('window').width / 3.5, height: Dimensions.get('window').height / 25}]}>
+        <Text style={[styles.buttonText, {color: 'black'}]}>{item.title}</Text>
       </View>
     </TouchableOpacity>
   )
