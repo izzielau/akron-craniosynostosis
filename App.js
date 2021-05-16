@@ -14,15 +14,19 @@ import ChecklistScreen from "./screens/ChecklistScreen";
 import IntroductionScreen from "./screens/IntroductionScreen";
 import ViewpointsScreen from "./screens/ViewpointsScreen";
 import SolidBackgroundScreen from "./screens/SolidBackgroundScreen";
+import ContrastScreen from "./screens/ContrastScreen";
 import SubmissionScreen from "./screens/SubmissionScreen";
 import CameraView from "./screens/CameraView";
 import GalleryView from "./screens/GalleryView";
+import FolderView from "./screens/FolderView";
 import { Asset } from "expo-asset";
+import { StatusBar } from 'react-native';
 
 // To initialize and style our Navigation Stack, we call the default methods
 // https://reactnavigation.org/docs/hello-react-navigation
 const Stack = createStackNavigator();
 const StackOptions = { headerTitleStyle: { fontFamily: "Avenir" } };
+const NoHeader = { headerTitleStyle: { fontFamily: "Avenir" }, headerShown: false };
 
 // Loading all images for quick use (eliminates lag problem)
 // https://docs.expo.io/versions/latest/sdk/asset/
@@ -35,7 +39,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Akron Children's Hospital"
           component={HomeScreen}
         />
@@ -61,6 +65,11 @@ export default function App() {
         />
         <Stack.Screen
           options={StackOptions}
+          name="Contrast"
+          component={ContrastScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
           name="Camera"
           component={CameraView}
         />
@@ -71,10 +80,16 @@ export default function App() {
         />
         <Stack.Screen
           options={StackOptions}
+          name="Folder"
+          component={FolderView}
+        />
+        <Stack.Screen
+          options={StackOptions}
           name="Submission"
           component={SubmissionScreen}
         />
       </Stack.Navigator>
+      <StatusBar barStyle={'dark-content'}/>
     </NavigationContainer>
   );
 }

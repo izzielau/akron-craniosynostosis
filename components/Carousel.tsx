@@ -1,42 +1,76 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, SafeAreaView, Image, StyleSheet } from "react-native";
+import { Text, View, SafeAreaView, Image,TouchableOpacity, Button, ImageRequireSource} from "react-native";
 
 import Carousel from "react-native-snap-carousel";
 import { Dimensions } from 'react-native';
+import Modal from 'react-native-modal';
 
-// Todo: find type for image and replace any
 type CarouselItem = { image: any, text: string }
 type CarouselProps = { activeIndex: number, setActiveIndex: Function, carouselItems: CarouselItem[] }
 
 export default function AngleCarousel(props: CarouselProps) {
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  }
+
   const renderItem = ({ item, index }) => {
     return (
-      <View
-        style={{
-          backgroundColor: "rebeccapurple",
-          borderRadius: 5,
-          height: 100,
-        }}
-      >
-        <Image
-          source={item.image}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            borderRadius: 5,
-          }}
-        />
-        <Text
-          style={{
-            position: "absolute",
-            marginTop: 5,
-            marginLeft: 5,
-          }}
-        >
-          {item.text}
-        </Text>
+      <View>
+        <TouchableOpacity onPress={toggleModal}>
+          <View
+            style={{
+              backgroundColor: "rebeccapurple",
+              borderRadius: 5,
+              height: 100,
+            }}
+          >
+            <Image
+              source={item.image}
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "relative",
+                borderRadius: 5,
+              }}
+            />
+            <Text
+              style={{
+                position: "absolute",
+                marginTop: 5,
+                marginLeft: 5,
+              }}
+            >
+              {item.text}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <Modal isVisible={modalVisible}>
+          <View>
+            <Image
+              source={props.carouselItems[props.activeIndex].image}
+              style={{
+                width: "100%",
+                height: "75%",
+                position: "relative",
+                borderRadius: 5,
+              }}
+            />
+            <Text
+              style={{
+                position: "absolute",
+                marginTop: 10,
+                marginLeft: 10,
+                fontSize: 30
+              }}
+            >
+              {props.carouselItems[props.activeIndex].text}
+            </Text>
+            <Button title="Close" onPress={toggleModal} color="white" />
+          </View>
+        </Modal>
       </View>
     );
   }

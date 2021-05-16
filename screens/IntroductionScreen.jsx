@@ -14,7 +14,7 @@ export default function IntroductionScreen(props) {
         <View style={styles.imageView}>
             <Image
                 style={styles.image}
-                source={require('../assets/tutorial/filler.jpg')}
+                source={require('../assets/tutorial/image-1.png')}
             />
         </View>
         <View style={styles.tutorialTextContainer}>

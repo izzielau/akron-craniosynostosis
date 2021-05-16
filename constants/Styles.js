@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     marginBottom: 50
   },
   button: {
-    height: 35,
-    width: 125,
+    height: 50,
+    width: 150,
     borderRadius: 500,
     alignItems: "center",
     justifyContent: "center",
@@ -53,16 +53,21 @@ const styles = StyleSheet.create({
     borderRadius: 500,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F0F0F7",
   },
   gallery: {
-    alignItems: "flex-end",
-    marginTop: "80%",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    width: 50,
-    height: 50,
-    backgroundColor: "#0085FF",
+    alignItems: "flex-start",
+    flexWrap: "wrap"
+  },
+  galleryFolder: {
+    // flex: 1,
+    height: Dimensions.get('window').height / 7,
+    width: Dimensions.get('window').width / 2.5,
+    borderRadius: 25,
+    margin: 15,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#F0F0F7",
   },
   imageView: {
       height: "50%",
@@ -81,23 +86,23 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 14,
+    fontWeight: "700",
+    fontSize: 16,
     color: "white",
     alignItems: "center",
   },
   whiteButtonText: {
     fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 14,
-    color: "#9A9AB0",
+    fontWeight: "700",
+    fontSize: 16,
+    color: "#014590",
     alignItems: "center",
   },
   headerText: {
     fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 18,
-    color: "#686B7E",
+    fontWeight: "700",
+    fontSize: 22,
+    color: "#010420",
     alignItems: "center",
     width: "90%",
     marginBottom: 15,
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
   bodyText: {
     fontFamily: "Avenir",
     fontWeight: "600",
-    fontSize: 14,
+    fontSize: 16,
     color: "#9A9AB0",
     alignItems: "center",
     width: "90%",
