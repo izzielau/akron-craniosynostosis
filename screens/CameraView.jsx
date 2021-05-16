@@ -12,6 +12,7 @@ export default function CameraView(props) {
   const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [activeIndex, setActiveIndex] = useState(0);
+  // const [modalVisible, setModalVisible] = useState(false);
 
   const carouselItems = [
     {
@@ -97,6 +98,8 @@ export default function CameraView(props) {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
             carouselItems={carouselItems}
+            // modalVisible={modalVisible}
+            // setModalVisible={setModelVisible}
           />
         </View>
         <View style={styles.buttonContainer}>
