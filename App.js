@@ -16,6 +16,8 @@ import ViewpointsScreen from "./screens/ViewpointsScreen";
 import SolidBackgroundScreen from "./screens/SolidBackgroundScreen";
 import ContrastScreen from "./screens/ContrastScreen";
 import SubmissionScreen from "./screens/SubmissionScreen";
+import LightCheckPassScreen from "./screens/LightCheckPassScreen";
+import LightCheckFailScreen from "./screens/LightCheckFailScreen";
 import CameraView from "./screens/CameraView";
 import GalleryView from "./screens/GalleryView";
 import FolderView from "./screens/FolderView";
@@ -87,6 +89,16 @@ export default function App() {
           options={StackOptions}
           name="Submission"
           component={SubmissionScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="LightCheckPass"
+          component={LightCheckPassScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="LightCheckFail"
+          component={LightCheckFailScreen}
         />
       </Stack.Navigator>
       <StatusBar barStyle={'dark-content'}/>

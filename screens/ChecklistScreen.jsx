@@ -116,7 +116,7 @@ const ChecklistScreen = (props) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Introduction")}
+            onPress={() => navigation.navigate("Introduction")} 
           >
             <Text style={styles.buttonText}>I'm Ready</Text>
           </TouchableOpacity>
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Avenir',
     textAlign: 'left',
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: '700',
     marginLeft: 20,
     marginBottom: 20,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontFamily: 'Avenir',
     textAlign: 'left',
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: '700',
     marginLeft: 10,
     
@@ -204,17 +204,17 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   button: {
-    height: 35,
-    width: 125,
-    borderRadius: 500,
+    height: 50,
+    width: 250,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#014590",
   },
   buttonText: {
     fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 14,
+    fontWeight: "700",
+    fontSize: 16,
     color: "white",
     alignItems: "center",
   },
