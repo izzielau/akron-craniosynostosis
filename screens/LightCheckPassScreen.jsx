@@ -8,7 +8,7 @@ export default function LightCheckPassScreen(props) {
   const { navigation } = props;
   return (
     <View style = {styles.lightcontainer}>
-        
+        <Text style={{marginTop: 50}} />
         <Text style={styles.headerText}>
             You're all set!
         </Text>
@@ -21,8 +21,6 @@ export default function LightCheckPassScreen(props) {
                 styles.box,
                 {
                   top: 50,
-               //   position: "relative",
-                 // justifyContent: "flex-start"
                 },
               ]}
               source={require('../assets/images-environment/smiley-face.png')}
@@ -33,17 +31,15 @@ export default function LightCheckPassScreen(props) {
                 {
                   top: 120,
                   left: 20,
-                  marginBottom: 300,
-                //  position: "relative",
-               //   justifyContent: "flex-end"
+                  marginBottom: 250,
                 },
               ]}
               source={require('../assets/images-environment/camera.png')}
           />
       </View>
         <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Checklist")}
+        style={styles.longButton}
+        onPress={() => navigation.navigate("Camera")}
         >
         <Text style={styles.buttonText}>Start Photographing</Text>
         </TouchableOpacity>

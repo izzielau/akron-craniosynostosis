@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   longButton: {
     height: 50,
     width: 250,
-    borderRadius: 500,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#014590",
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
       width: "100%"
   },
   viewpointView: {
-      height: "60%",
+      height: "50%",
       width: "100%"
   },
   image: {

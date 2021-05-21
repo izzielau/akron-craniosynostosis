@@ -19,6 +19,7 @@ import SubmissionScreen from "./screens/SubmissionScreen";
 import LightCheckPassScreen from "./screens/LightCheckPassScreen";
 import LightCheckFailScreen from "./screens/LightCheckFailScreen";
 import CameraView from "./screens/CameraView";
+import EvaluationView from "./screens/EvaluationView";
 import GalleryView from "./screens/GalleryView";
 import FolderView from "./screens/FolderView";
 import { Asset } from "expo-asset";
@@ -51,24 +52,29 @@ export default function App() {
           component={ChecklistScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Introduction"
           component={IntroductionScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Viewpoints"
           component={ViewpointsScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Solid Background"
           component={SolidBackgroundScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Contrast"
           component={ContrastScreen}
+        />
+        <Stack.Screen
+          options={StackOptions}
+          name="Evaluation"
+          component={EvaluationView}
         />
         <Stack.Screen
           options={StackOptions}
@@ -91,7 +97,7 @@ export default function App() {
           component={SubmissionScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="LightCheckPass"
           component={LightCheckPassScreen}
         />
