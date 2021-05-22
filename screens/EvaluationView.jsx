@@ -33,10 +33,10 @@ export default function EvaluationView(props) {
       console.log(data);
 
       // TODO: call API on the data variable above, which holds the picture of the environment
-      
+
 
       // TODO: navigate to either pass or fail based on the API's results
-      navigation.navigate("LightCheckPass")
+      navigation.navigate("LightCheckFail")
       
     }
   }

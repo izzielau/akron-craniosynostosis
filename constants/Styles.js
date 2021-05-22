@@ -47,6 +47,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#014590",
   },
+  longWhiteButton: {
+    height: 50,
+    width: 250,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#014590",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
   whiteButton: {
     height: 50,
     width: 150,
@@ -158,8 +168,8 @@ const styles = StyleSheet.create({
   failrow: {
     flexDirection: "row",
     width: "95%",
-    height: 85,
-    marginVertical: 10,
+    height: 75,
+    marginVertical: 5,
     padding: 10,
     borderRadius: 10,
     borderColor: "#9A9AB0",

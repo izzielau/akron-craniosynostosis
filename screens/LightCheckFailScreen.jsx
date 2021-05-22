@@ -28,23 +28,24 @@ export default function LightCheckFailScreen(props) {
                 Find a solid backdrop.
                 </Text>
             </View>
-
             <View style = {styles.failrow}>
                 <Image style={styles.lightCheckFailbox} source={require('../assets/images-environment/sun.png')}/>
                 <Text style = {styles.titleText}>
-                Move to a room with more natural lighting.
+                Move to a room with more lighting.
                 </Text>
             </View>
        
+      <Text style={{marginBottom: 10}} />
+
       <TouchableOpacity
-        style={styles.whiteButton}
-        onPress={() => navigation.navigate("Checklist")}
+        style={styles.longWhiteButton}
+        onPress={() => navigation.navigate("Evaluation")}
         >
         <Text style={styles.whiteButtonText}>Retake Environment</Text>
         </TouchableOpacity>
         <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("LightCheckPass")}
+        style={styles.longButton}
+        onPress={() => navigation.navigate("Camera")}
         >
         <Text style={styles.buttonText}>Start Photographing</Text>
         </TouchableOpacity>
