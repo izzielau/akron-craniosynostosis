@@ -1,26 +1,63 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
+import * as MediaLibrary from 'expo-media-library';
 
 import AngleCarousel from "../components/Carousel";
-
-// import { styles } from "../constants/Styles";
-import { shuffle } from "../utils/ArrayUtils";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
-import { white } from "ansi-colors";
 
 export default function CameraView(props) {
   const { navigation } = props;
 
   const [hasPermission, setHasPermission] = useState(false);
+  const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [activeIndex, setActiveIndex] = useState(0);
+  // const [modalVisible, setModalVisible] = useState(false);
+
+  const carouselItems = [
+    {
+      image: require("../assets/faces/front.png"),
+      text: "Front",
+    },
+    {
+      image: require("../assets/faces/back.png"),
+      text: "Back",
+    },
+    {
+      image: require("../assets/faces/left-side.png"),
+      text: "Left Side",
+    },
+    {
+      image: require("../assets/faces/right-side.png"),
+      text: "Right Side",
+    },
+    {
+      image: require("../assets/faces/under.png"),
+      text: "Under",
+    },
+    {
+      image: require("../assets/faces/top-angled.png"),
+      text: "Top",
+    },
+    {
+      image: require("../assets/faces/birdeye.png"),
+      text: "Bird's eye view",
+    },
+  ]
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === 'granted');
+      console.log("setting hasPermission to ", status === 'granted')
+
+      const rollPermissions = await MediaLibrary.requestPermissionsAsync();
+      setHasCameraRollPermission(rollPermissions.status === 'granted');
+      console.log("setting camera roll permission to ", rollPermissions.status === 'granted')
     })();
   }, []);
+
+  const camera = useRef();
 
   if (hasPermission === null) {
     return <View />;
@@ -29,19 +66,51 @@ export default function CameraView(props) {
     return <Text>No access to camera</Text>;
   }
 
-  // Style & return the view.
+  const takePictureAndCreateAlbum = async () => {
+    if (camera.current) {
+      const data = await camera.current.takePictureAsync()
+        .catch(error => console.log('error', error));
+      console.log(data);
+      
+      const asset = await MediaLibrary.createAssetAsync(data.uri);
+      const albumTitle = carouselItems[activeIndex].text;
+      console.log(albumTitle);
+
+      MediaLibrary.createAlbumAsync(albumTitle, asset)
+        .then(() => {
+          console.log('Album created!');
+        })
+        .catch(error => {
+          console.log('err', error);
+        });
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type} ref={camera}>
         <Image
           style={styles.guide}
           source={require("../assets/head-guide.png")}
         />
         <View style={styles.carouselContainer}>
-          <AngleCarousel />
+          <AngleCarousel
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            carouselItems={carouselItems}
+            // modalVisible={modalVisible}
+            // setModalVisible={setModelVisible}
+          />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity 
+          style={styles.button}
+          onPress={() =>
+            hasPermission && hasCameraRollPermission
+              ? takePictureAndCreateAlbum()
+              : console.log('Permissions not granted', hasPermission, hasCameraRollPermission)
+          }
+          >
             <Image source={require("../assets/camera-capture.png")} />
           </TouchableOpacity>
           <TouchableOpacity
