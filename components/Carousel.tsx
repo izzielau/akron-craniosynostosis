@@ -22,9 +22,8 @@ export default function AngleCarousel(props: CarouselProps) {
         <TouchableOpacity onPress={toggleModal}>
           <View
             style={{
-              backgroundColor: "rebeccapurple",
-              borderRadius: 5,
-              height: 100,
+              backgroundColor: "transparent",
+              height: 150,
             }}
           >
             <Image
@@ -39,8 +38,9 @@ export default function AngleCarousel(props: CarouselProps) {
             <Text
               style={{
                 position: "absolute",
-                marginTop: 5,
-                marginLeft: 5,
+                marginTop: 10,
+                marginLeft: 10,
+                color: "white",
               }}
             >
               {item.text}
@@ -61,9 +61,11 @@ export default function AngleCarousel(props: CarouselProps) {
             <Text
               style={{
                 position: "absolute",
-                marginTop: 10,
-                marginLeft: 10,
-                fontSize: 30
+                marginTop: 20,
+                marginLeft: 20,
+                fontSize: 18,
+                backgroundColor: "transparent",
+                color: "white"
               }}
             >
               {props.carouselItems[props.activeIndex].text}
@@ -85,7 +87,7 @@ export default function AngleCarousel(props: CarouselProps) {
             data={props.carouselItems}
             loop={true}
             sliderWidth={Dimensions.get('window').width} // needs to be relative to screen size in the future
-            itemWidth={100}
+            itemWidth={150}
             hasParallaxImages={true}
             renderItem={renderItem}
             onSnapToItem={(index) => props.setActiveIndex(index)}
