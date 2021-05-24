@@ -4,6 +4,7 @@ import { Camera } from "expo-camera";
 import * as MediaLibrary from 'expo-media-library';
 
 import AngleCarousel from "../components/Carousel";
+import { Dimensions } from 'react-native';
 
 export default function CameraView(props) {
   const { navigation } = props;
@@ -16,32 +17,39 @@ export default function CameraView(props) {
 
   const carouselItems = [
     {
-      image: require("../assets/faces/front.png"),
+      image: require("../assets/updated-faces/front.png"),
       text: "Front",
+      overlay: require("../assets/overlays/front-overlay.png"),
     },
     {
-      image: require("../assets/faces/back.png"),
+      image: require("../assets/updated-faces/back.png"),
       text: "Back",
+      overlay: require("../assets/overlays/center.png"),
     },
     {
-      image: require("../assets/faces/left-side.png"),
+      image: require("../assets/updated-faces/left-side.png"),
       text: "Left Side",
+      overlay: require("../assets/overlays/sides.png"),
     },
     {
-      image: require("../assets/faces/right-side.png"),
+      image: require("../assets/updated-faces/right-side.png"),
       text: "Right Side",
+      overlay: require("../assets/overlays/sides.png"),
     },
     {
-      image: require("../assets/faces/under.png"),
-      text: "Under",
+      image: require("../assets/updated-faces/worms-eye.png"),
+      text: "Worm's Eye",
+      overlay: require("../assets/overlays/worm.png"),
     },
     {
-      image: require("../assets/faces/top-angled.png"),
+      image: require("../assets/updated-faces/top-angled.png"),
+      text: "Angled Top",
+      overlay: require("../assets/overlays/top-angled.png"),
+    },
+    {
+      image: require("../assets/updated-faces/top.png"),
       text: "Top",
-    },
-    {
-      image: require("../assets/faces/birdeye.png"),
-      text: "Bird's eye view",
+      overlay: require("../assets/overlays/center.png"),
     },
   ]
 
@@ -91,7 +99,7 @@ export default function CameraView(props) {
       <Camera style={styles.camera} type={type} ref={camera}>
         <Image
           style={styles.guide}
-          source={require("../assets/head-guide.png")}
+          source={carouselItems[activeIndex].overlay}
         />
         <View style={styles.carouselContainer}>
           <AngleCarousel
@@ -111,13 +119,13 @@ export default function CameraView(props) {
               : console.log('Permissions not granted', hasPermission, hasCameraRollPermission)
           }
           >
-            <Image source={require("../assets/camera-capture.png")} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.gallery}
             onPress={() => navigation.navigate("Gallery")}
           >
-        </TouchableOpacity>
+            <Text style={{color: "white"}}>Gallery</Text>
+          </TouchableOpacity>
         </View>
       </Camera>
     </View>
@@ -126,46 +134,49 @@ export default function CameraView(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
   },
   camera: {
-    flex: 1,
+    height: "100%",
   },
   guide: {
-    flex: 2,
-    marginTop: '30%',
+    position: "absolute",
     alignSelf: 'center',
     justifyContent: 'center',
-    height: 300,
-    width: 300,
-  },
-  instructions: {
-    color: 'white',
-    textAlign: 'center',
-    marginTop: '7%'
+    marginTop: 50,
+    height: "60%",
   },
   carouselContainer: {
-    marginTop: '7%',
-    height: 125,
+    height: 175,
     alignSelf: "center",
     alignItems: "center",
+    marginTop: Dimensions.get('window').height - 375,
   },
   buttonContainer: {
-    flex: 0.5,
+    flexDirection: "row",
+    justifyContent: "center",
     backgroundColor: "transparent",
-    margin: 20,
+    marginTop: 0,
+    marginLeft: 50,
   },
   button: {
-    flex: 0.5,
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center"
+    height: 50,
+    width: 50,
+    marginLeft: 75,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: "white",
   },
   gallery: {
     height: 50,
-    width: 50,
-    borderRadius: 5,
-    backgroundColor: "white",
+    width: 100,
+    marginLeft: 25,
+    borderRadius: 15,
+    borderWidth: 2,
+    backgroundColor: "#014590",
+    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
   }
 });
 
