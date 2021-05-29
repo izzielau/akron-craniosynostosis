@@ -1,31 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Image, Text, View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { Image, Text, View, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from "react-native";
 import { styles } from "../constants/Styles";
 import * as MediaLibrary from 'expo-media-library';
 import Carousel, { Pagination } from "react-native-snap-carousel";
+// import { ScrollView } from "react-native-gesture-handler";
+import Images from "../constants/Constants";
 
 export default function FolderView(props) {
     const { navigation } = props;
     const { route } = props;
 
-    const { title } = route.params;
+    const { title, example } = route.params;
+    
+    // const exampleImage = require(example.str);
 
     const imageWidth = Dimensions.get('window').width * 0.9;
-    const imageHeight = Dimensions.get('window').height;
 
     useEffect(() => {
         navigation.setOptions({headerTitle: title});
     });
-
-    //camera roll permissions should already be requested prior to access to folder page, thus should not need to maintain state of camera roll permissions and can be removed in future.
-    const [hasCameraRollPermission, setHasCameraRollPermission] = useState(false);
-
-    useEffect(() => {
-        (async () => {
-            const rollPermissions = await MediaLibrary.requestPermissionsAsync();
-            setHasCameraRollPermission(rollPermissions.status === 'granted');
-        })();
-    }, []);
 
     const [albumAssets, setAlbumAssets] = useState(null);
 
@@ -40,7 +33,8 @@ export default function FolderView(props) {
     const renderItem = ({ item }) => (
         <Image 
             style={folderStyles.image} 
-            source={item} />
+            source={item} 
+        />
     )
     
     return (
@@ -48,21 +42,30 @@ export default function FolderView(props) {
             <Text style={[styles.bodyText, folderStyles.text]}>
                 {"Compare to example."}
             </Text>
-            <Text style={[styles.bodyText, folderStyles.sectionText]}>Your Image</Text> 
-            <Carousel
-                data={albumAssets}
-                renderItem={renderItem}
-                sliderWidth={imageWidth}
-                sliderHeight={imageHeight}
-                itemWidth={imageWidth}
-                layout={'default'}
-                layoutCardOffset={0}
-            />
-            <Text style={[styles.bodyText, folderStyles.sectionText]}>Example Image</Text>
-            <View style={[styles.galleryFolder, folderStyles.image]}></View>
+            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+                <Text style={[styles.bodyText, folderStyles.sectionText]}>Your Image</Text> 
+                <View style={folderStyles.image}>
+                    <Carousel
+                        data={albumAssets}
+                        renderItem={renderItem}
+                        sliderWidth={imageWidth}
+                        itemWidth={imageWidth}
+                        layout={'default'}
+                        layoutCardOffset={0}
+                    />
+                </View>
+                <Text style={[styles.bodyText, folderStyles.sectionText]}>Example Image</Text>
+                <Text style={[styles.bodyText, folderStyles.sectionText]}>{example}</Text>
+                <View style={folderStyles.image}>
+                    <Image 
+                        style={folderStyles.image}
+                        source={Images.front} 
+                    ></Image>
+                </View>
+            </ScrollView>
             <TouchableOpacity
                 style={[styles.button, folderStyles.sectionText, {marginBottom: 25}]}
-                onPress={() => navigation.navigate("TBD")}
+                onPress={() => navigation.navigate("Camera")}
             >
                 <Text style={styles.buttonText}>Capture More</Text>
             </TouchableOpacity>
@@ -80,10 +83,10 @@ const folderStyles = StyleSheet.create({
         marginBottom: 10
     },
     image: {
-        height: Dimensions.get('window').height * 0.28,
+        height: 400,
         width: Dimensions.get('window').width * 0.9, 
-        margin: 0, 
-        padding: 0, 
+        marginBottom: 10, 
+        // padding: 0, 
         borderRadius: 25,
         alignItems: 'center', 
         justifyContent: 'center'
