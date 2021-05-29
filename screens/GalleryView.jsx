@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, usela } from "react";
 import { Image, Text, View, TouchableOpacity, FlatList, Dimensions } from "react-native";
 
 import { styles } from "../constants/Styles";
