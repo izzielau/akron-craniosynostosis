@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   galleryFolder: {
-    height: Dimensions.get('window').height / 7.5,
-    width: Dimensions.get('window').width / 2.5,
+    height: 200,
+    width: Dimensions.get('window').width * 0.4,
     borderRadius: 25,
     marginTop: Dimensions.get('window').height / 75,
     marginBottom: Dimensions.get('window').height / 75,
