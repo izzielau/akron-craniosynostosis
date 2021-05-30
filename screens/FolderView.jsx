@@ -3,7 +3,6 @@ import { Image, Text, View, TouchableOpacity, StyleSheet, Dimensions, ScrollView
 import { styles } from "../constants/Styles";
 import * as MediaLibrary from 'expo-media-library';
 import Carousel, { Pagination } from "react-native-snap-carousel";
-// import { ScrollView } from "react-native-gesture-handler";
 import Images from "../constants/Constants";
 
 export default function FolderView(props) {
@@ -11,13 +10,36 @@ export default function FolderView(props) {
     const { route } = props;
 
     const { title, example } = route.params;
-    
-    // const exampleImage = require(example.str);
 
     const imageWidth = Dimensions.get('window').width * 0.9;
 
+    const [exampleImage, setExampleImage] = useState(null);
+
     useEffect(() => {
         navigation.setOptions({headerTitle: title});
+        switch(title) {
+            case 'Front':
+                setExampleImage(Images.front);
+                break;
+            case 'Back':
+                setExampleImage(Images.back);
+                break;
+            case 'Left Side':
+                setExampleImage(Images.leftSide);
+                break;
+            case 'Right Side':
+                setExampleImage(Images.rightSide);
+                break;
+            case "Worm's Eye":
+                setExampleImage(Images.wormsEye);
+                break;
+            case 'Top':
+                setExampleImage(Images.top);
+                break;
+            case 'Top Angled':
+                setExampleImage(Images.topAngled);
+                break;
+        }
     });
 
     const [albumAssets, setAlbumAssets] = useState(null);
@@ -59,7 +81,7 @@ export default function FolderView(props) {
                 <View style={folderStyles.image}>
                     <Image 
                         style={folderStyles.image}
-                        source={Images.front} 
+                        source={exampleImage} 
                     ></Image>
                 </View>
             </ScrollView>
@@ -86,7 +108,6 @@ const folderStyles = StyleSheet.create({
         height: 400,
         width: Dimensions.get('window').width * 0.9, 
         marginBottom: 10, 
-        // padding: 0, 
         borderRadius: 25,
         alignItems: 'center', 
         justifyContent: 'center'

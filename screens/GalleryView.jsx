@@ -1,9 +1,8 @@
-import React, { useState, usela } from "react";
+import React, { useState } from "react";
 import { Image, Text, View, TouchableOpacity, FlatList, Dimensions } from "react-native";
 import { styles } from "../constants/Styles";
 import { useEffect } from "react";
 import * as MediaLibrary from 'expo-media-library';
-import Images from '../constants/Constants';
 
 export default function GalleryView(props) {
   const { navigation } = props;
@@ -11,14 +10,13 @@ export default function GalleryView(props) {
   const numColumns = 2;
   
   const [angles] = useState([
-    {title: 'Front', key: '1', image: null, example: require("../assets/updated-faces/front.png")},
-    {title: 'Back', key: '2', image: null, example: Images.back},
-    {title: 'Left Side', key: '3', image: null, example: Images.leftSide},
-    {title: 'Right Side', key: '4', image: null, example: Images.rightSide},
-    {title: "Worm's Eye", key: '5', image: null, example: Images.wormsEye},
-    {title: 'Top', key: '6', image: null, example: Images.top},
-    {title: 'Top Angled', key: '7', image: null, example: Images.topAngled},
-    // {title: 'Angle 8', key: '8', image: ''},
+    {title: 'Front', key: '1', image: null},
+    {title: 'Back', key: '2', image: null},
+    {title: 'Left Side', key: '3', image: null},
+    {title: 'Right Side', key: '4', image: null},
+    {title: "Worm's Eye", key: '5', image: null},
+    {title: 'Top', key: '6', image: null},
+    {title: 'Top Angled', key: '7', image: null},
   ]);
 
   useEffect(() => {
