@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 32,
     fontWeight: '700',
+    marginTop: 100,
     marginLeft: 20,
     marginBottom: 20,
   },
