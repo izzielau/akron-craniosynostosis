@@ -44,27 +44,27 @@ export default function App() {
           component={HomeScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Checklist"
           component={ChecklistScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Introduction"
           component={IntroductionScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Viewpoints"
           component={ViewpointsScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Solid Background"
           component={SolidBackgroundScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Contrast"
           component={ContrastScreen}
         />
@@ -84,7 +84,7 @@ export default function App() {
           component={FolderView}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Submission"
           component={SubmissionScreen}
         />
