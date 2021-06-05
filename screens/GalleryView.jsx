@@ -46,8 +46,8 @@ export default function GalleryView(props) {
     </TouchableOpacity>
   )
   
-  const numCompleted = 44;
-  const status = "Complete";
+  // const numCompleted = 44;
+  // const status = "Complete";
 
   // Style & return the view.
   return (
@@ -56,9 +56,9 @@ export default function GalleryView(props) {
         {"Tap on a folder to view pictures taken for that specific angle. You'll have the opton to retake pictures of necessary."}
       </Text>
 
-      <Text style={[styles.bodyText, {marginTop: 10, marginBottom: 0, alignItems: 'flex-end'}]}>
+      {/* <Text style={[styles.bodyText, {marginTop: 10, marginBottom: 0, alignItems: 'flex-end'}]}>
         {numCompleted} Pictures {'\u25CF'} {status}
-      </Text>
+      </Text> */}
 
       <FlatList
         data={angles}
