@@ -56,14 +56,16 @@ const styles = StyleSheet.create({
   },
   gallery: {
     alignItems: "flex-start",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   galleryFolder: {
-    // flex: 1,
-    height: Dimensions.get('window').height / 7,
-    width: Dimensions.get('window').width / 2.5,
+    height: 200,
+    width: Dimensions.get('window').width * 0.4,
     borderRadius: 25,
-    margin: 15,
+    marginTop: Dimensions.get('window').height / 75,
+    marginBottom: Dimensions.get('window').height / 75,
+    marginLeft: Dimensions.get('window').width / 25,
+    marginRight: Dimensions.get('window').width / 25,
     padding: 10,
     alignItems: "center",
     justifyContent: "flex-start",
