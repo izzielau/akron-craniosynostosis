@@ -34,6 +34,12 @@ export default function SubmissionScreen(props) {
         <Text style={styles.bodyText}>
             3. Emailing your provider the photos directly may also be an alternative.
         </Text>
+        <TouchableOpacity
+            style={styles.longButton}
+            onPress={() => navigation.navigate("Akron Children's Hospital")}
+        >
+            <Text style={styles.buttonText}>Back to Beginning</Text>
+        </TouchableOpacity>
     </View>
   );
 }
