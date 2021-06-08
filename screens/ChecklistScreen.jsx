@@ -205,8 +205,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   button: {
-    height: 35,
-    width: 125,
+    height: 50,
+    width: 150,
     borderRadius: 500,
     alignItems: "center",
     justifyContent: "center",
@@ -214,8 +214,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: "Avenir",
-    fontWeight: "600",
-    fontSize: 14,
+    fontWeight: "700",
+    fontSize: 16,
     color: "white",
     alignItems: "center",
   },

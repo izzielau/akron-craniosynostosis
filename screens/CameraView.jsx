@@ -82,21 +82,34 @@ export default function CameraView(props) {
       
       const asset = await MediaLibrary.createAssetAsync(data.uri);
       const albumTitle = carouselItems[activeIndex].text;
-      console.log(albumTitle);
+      const album = await MediaLibrary.getAlbumAsync(albumTitle)
+      console.log(albumTitle)
+      console.log(album)
 
-      MediaLibrary.createAlbumAsync(albumTitle, asset)
-        .then(() => {
-          console.log('Album created!');
-        })
-        .catch(error => {
-          console.log('err', error);
-        });
+      if (album === undefined || album === null) {
+        console.log(albumTitle)
+        MediaLibrary.createAlbumAsync(albumTitle, asset)
+          .then(() => {
+            console.log('Album created!');
+          })
+          .catch(error => {
+            console.log('err', error);
+          });
+      } else {
+        let assetAdded = await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
+      }
     }
   }
 
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={camera}>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => navigation.navigate("Introduction")}
+        >
+          <Text style={{color: "white"}}>Back to Tutorial</Text>
+        </TouchableOpacity>
         <Image
           style={styles.guide}
           source={carouselItems[activeIndex].overlay}
@@ -143,8 +156,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: 'center',
     justifyContent: 'center',
-    marginTop: 50,
-    height: "60%",
+    marginTop: 150,
+    height: "50%",
+    opacity: 0.5,
   },
   carouselContainer: {
     height: 175,
@@ -173,6 +187,21 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     borderRadius: 15,
     borderWidth: 2,
+    borderColor: "transparent",
+    backgroundColor: "#014590",
+    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  back: {
+    height: 50,
+    width: 150,
+    marginTop: 50,
+    marginBottom: 10,
+    marginLeft: 25,
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: "transparent",
     backgroundColor: "#014590",
     color: "white",
     alignItems: "center",

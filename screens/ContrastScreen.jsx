@@ -33,11 +33,19 @@ export default function ContrastScreen(props) {
               <Text style={styles.whiteButtonText}>Previous</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              style={styles.longButton}
+              onPress={() => navigation.navigate("Camera")}
+            >
+              <Text style={styles.buttonText}>Begin Photographing</Text>
+            </TouchableOpacity>
+            {/* 
+            <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate("Camera")}
             >
               <Text style={styles.buttonText}>Evaluate Studio</Text>
             </TouchableOpacity>
+            */}
         </View>
     </View>
   );

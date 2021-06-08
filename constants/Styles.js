@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#014590",
   },
   longButton: {
-    height: 35,
+    height: 50,
     width: 225,
     borderRadius: 500,
     alignItems: "center",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#014590",
   },
   whiteButton: {
-    height: 35,
+    height: 50,
     width: 125,
     borderRadius: 500,
     alignItems: "center",

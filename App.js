@@ -69,7 +69,7 @@ export default function App() {
           component={ContrastScreen}
         />
         <Stack.Screen
-          options={StackOptions}
+          options={NoHeader}
           name="Camera"
           component={CameraView}
         />
