@@ -10,7 +10,6 @@ export default function GalleryView(props) {
   const numColumns = 2;
   const firstRender = useRef(true);
   const [changeAngles, setChangeAngles] = useState(false);
-  const [changeState, setChangeState] = useState(false);
 
   function returnColor(length) {
     return length === 0? '#E1506A' : 'transparent'
@@ -41,7 +40,7 @@ export default function GalleryView(props) {
         }
       })();
     })
-  }, changeState);
+  }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
