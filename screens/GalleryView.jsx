@@ -9,7 +9,7 @@ export default function GalleryView(props) {
 
   const numColumns = 2;
   const firstRender = useRef(true);
-  const [changeAngles, setChangeAngles] = useState(false);
+  const [changeAngles, setChangeAngles] = useState(null);
 
   function returnColor(length) {
     return length === 0? '#E1506A' : 'transparent'
@@ -28,19 +28,16 @@ export default function GalleryView(props) {
   useEffect(() => {
     angles.forEach((item) => {
       (async () => {
-        var album = await MediaLibrary.getAlbumAsync(item.title);
-        if (album == null || album == undefined) {
-          
-        } else {
-          var res = await MediaLibrary.getAssetsAsync({ album });
+        const album = await MediaLibrary.getAlbumAsync(item.title);
+        const res = await MediaLibrary.getAssetsAsync({ album });
+        if (album !== null && album !== undefined && item.length !== res.assets.length) {
           item.image = res.assets;
           item.length = res.assets.length;
-
-          setChangeAngles(!changeAngles);
+          setChangeAngles(res);
         }
       })();
     })
-  }, []);
+  });
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
