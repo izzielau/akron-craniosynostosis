@@ -48,7 +48,9 @@ export default function FolderView(props) {
         (async () => {
             const album = await MediaLibrary.getAlbumAsync(title);
             const res = await MediaLibrary.getAssetsAsync({ album });
-            setAlbumAssets(res.assets);
+            if (album !== null && album !== undefined) {
+                setAlbumAssets(res.assets);
+            }
         })();
     }, []);
 
