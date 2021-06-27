@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   carouselContainer: {
-    height: 175,
+    height: 150,
     alignSelf: "center",
     alignItems: "center",
-    marginTop: Dimensions.get('window').height - 375,
+    marginTop: Dimensions.get('window').height - 350,
   },
   buttonContainer: {
     flexDirection: "row",

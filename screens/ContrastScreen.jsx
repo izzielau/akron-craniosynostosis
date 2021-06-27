@@ -19,10 +19,11 @@ export default function ContrastScreen(props) {
         </View>
         <View style={styles.tutorialTextContainer}>
             <Text style={styles.headerText}>
-            Let’s make sure you have proper contrast between your background and your infant 
+            Make sure you have proper contrast between your background and your infant.
             </Text>
             <Text style={styles.bodyText}>
-            Snap a couple pictures of your infant in front of the background that you’ve chosen. We’ll let you know if your current setup provides enough contrast. 
+            Ideally, choose a background that is dissimilar from the clothes, hair, and skin color of your infant. 
+            This will allow the doctors will be able to clearly identify your infant's skull shape.
             </Text>
         </View>
         <View style={styles.buttonRow}>

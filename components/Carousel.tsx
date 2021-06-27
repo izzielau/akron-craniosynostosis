@@ -23,7 +23,7 @@ export default function AngleCarousel(props: CarouselProps) {
           <View
             style={{
               backgroundColor: "transparent",
-              height: 150,
+              height: 125,
             }}
           >
             <Image
@@ -87,7 +87,7 @@ export default function AngleCarousel(props: CarouselProps) {
             data={props.carouselItems}
             loop={true}
             sliderWidth={Dimensions.get('window').width} // needs to be relative to screen size in the future
-            itemWidth={150}
+            itemWidth={125}
             hasParallaxImages={true}
             renderItem={renderItem}
             onSnapToItem={(index) => props.setActiveIndex(index)}
